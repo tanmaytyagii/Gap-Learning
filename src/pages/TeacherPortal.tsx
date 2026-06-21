@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { GraduationCap, Sparkles, Settings, CheckCircle } from 'lucide-react';
 import { Navbar } from '../components/layout/Navbar';
@@ -6,13 +6,8 @@ import { TeacherDashboard } from '../components/teacher/TeacherDashboard';
 import { getStoredApiKey, setStoredApiKey } from '../services/ai';
 
 export function TeacherPortal() {
-  const [apiKey, setApiKey] = useState('');
+  const [apiKey, setApiKey] = useState(getStoredApiKey);
   const [showSettings, setShowSettings] = useState(false);
-
-  useEffect(() => {
-    const key = getStoredApiKey();
-    if (key) setApiKey(key);
-  }, []);
 
   const handleApiKeyChange = (val: string) => {
     setApiKey(val);

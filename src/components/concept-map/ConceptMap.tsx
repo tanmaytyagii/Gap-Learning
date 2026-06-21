@@ -15,10 +15,9 @@ interface ConceptMapProps {
 const layouts: Record<string, Record<string, { x: number; y: number }>> = {
   math: {
     frac_visual: { x: 50, y: 12 },
-    frac_equiv: { x: 22, y: 45 },
-    frac_add_like: { x: 78, y: 45 },
-    frac_add_unlike: { x: 50, y: 78 },
-    frac_multiply: { x: 15, y: 78 },
+    frac_equiv: { x: 50, y: 36 },
+    frac_compare: { x: 50, y: 60 },
+    frac_operations: { x: 50, y: 84 },
   },
   science: {
     sci_force: { x: 50, y: 12 },
@@ -36,10 +35,8 @@ const layouts: Record<string, Record<string, { x: number; y: number }>> = {
 const connections: Record<string, [string, string][]> = {
   math: [
     ['frac_visual', 'frac_equiv'],
-    ['frac_visual', 'frac_add_like'],
-    ['frac_equiv', 'frac_add_unlike'],
-    ['frac_add_like', 'frac_add_unlike'],
-    ['frac_equiv', 'frac_multiply'],
+    ['frac_equiv', 'frac_compare'],
+    ['frac_compare', 'frac_operations'],
   ],
   science: [
     ['sci_force', 'sci_gravity'],

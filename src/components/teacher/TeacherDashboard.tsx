@@ -184,7 +184,7 @@ export function TeacherDashboard({ apiKey }: TeacherDashboardProps) {
   };
 
   const formatText = (text: string) => {
-    const parts = text.split(/(\$[^\$]+\$)/g);
+    const parts = text.split(/(\$[^$]+\$)/g);
     return parts.map((part, index) => {
       if (part.startsWith('$') && part.endsWith('$')) {
         return <strong key={index} className="text-primary-light">{part.slice(1, -1)}</strong>;

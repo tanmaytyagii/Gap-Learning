@@ -1,0 +1,121 @@
+[
+  {
+    "id": "frac-basic-e1", "topic": "Fractions", "concept": "frac_visual", "difficulty": "easy", "prerequisites": [],
+    "learningObjective": "Identify numerator and denominator in a part-whole model.",
+    "question": "A pizza has 8 equal slices and 3 are eaten. What fraction remains?", "options": ["3/8", "5/8", "5/3", "5"], "correctAnswer": "5/8",
+    "hint": "Subtract the eaten slices from all 8 slices.", "solutionSteps": "There are 8 equal parts. 8 - 3 = 5 parts remain, so the fraction is 5/8.",
+    "misconceptionMap": {"3/8": "answered_eaten_not_remaining", "5/3": "numerator_denominator_reversal", "5": "denominator_ignored"}
+  },
+  {
+    "id": "frac-basic-e2", "topic": "Fractions", "concept": "frac_visual", "difficulty": "easy", "prerequisites": [],
+    "learningObjective": "Interpret the denominator as the number of equal parts.",
+    "question": "A strip is divided into 6 equal parts. Two parts are shaded. Which fraction is shaded?", "options": ["2/6", "4/6", "6/2", "2"], "correctAnswer": "2/6",
+    "hint": "The denominator counts all equal parts; the numerator counts shaded parts.", "solutionSteps": "There are 6 total equal parts and 2 shaded parts, giving 2/6.",
+    "misconceptionMap": {"4/6": "answered_unshaded_not_shaded", "6/2": "numerator_denominator_reversal", "2": "denominator_ignored"}
+  },
+  {
+    "id": "frac-basic-m1", "topic": "Fractions", "concept": "frac_visual", "difficulty": "medium", "prerequisites": [],
+    "learningObjective": "Connect fractions to points on a number line.",
+    "question": "The interval from 0 to 1 is split into 4 equal spaces. What value is the third mark after 0?", "options": ["1/4", "2/4", "3/4", "4/3"], "correctAnswer": "3/4",
+    "hint": "Count equal fourths from zero.", "solutionSteps": "Each step is 1/4. Three steps from zero is 3 x 1/4 = 3/4.",
+    "misconceptionMap": {"1/4": "counted_partition_size_only", "2/4": "number_line_counting_error", "4/3": "numerator_denominator_reversal"}
+  },
+  {
+    "id": "frac-equiv-e1", "topic": "Fractions", "concept": "frac_equiv", "difficulty": "easy", "prerequisites": ["frac_visual"],
+    "learningObjective": "Recognize a simple equivalent fraction.",
+    "question": "Which fraction is equivalent to 1/2?", "options": ["2/3", "2/4", "3/4", "1/4"], "correctAnswer": "2/4",
+    "hint": "Multiply the numerator and denominator by the same number.", "solutionSteps": "Multiply both parts of 1/2 by 2: 1 x 2 over 2 x 2 equals 2/4.",
+    "misconceptionMap": {"2/3": "additive_scaling_error", "3/4": "unequal_scaling", "1/4": "denominator_only_scaling"}
+  },
+  {
+    "id": "frac-equiv-e2", "topic": "Fractions", "concept": "frac_equiv", "difficulty": "easy", "prerequisites": ["frac_visual"],
+    "learningObjective": "Complete an equivalent fraction using equal scaling.",
+    "question": "Complete the equivalence: 3/5 = ?/10", "options": ["5", "6", "8", "15"], "correctAnswer": "6",
+    "hint": "The denominator doubled, so do the same to the numerator.", "solutionSteps": "5 was multiplied by 2 to make 10. Multiply 3 by 2 as well, giving 6/10.",
+    "misconceptionMap": {"5": "copied_denominator", "8": "additive_scaling_error", "15": "cross_multiply_confusion"}
+  },
+  {
+    "id": "frac-equiv-m1", "topic": "Fractions", "concept": "frac_equiv", "difficulty": "medium", "prerequisites": ["frac_visual"],
+    "learningObjective": "Generate equivalent fractions with a missing value.",
+    "question": "Find the missing number: 4/6 = 10/?", "options": ["12", "15", "16", "20"], "correctAnswer": "15",
+    "hint": "4 became 10 by multiplying by 2.5; preserve the same ratio.", "solutionSteps": "Use cross-products: 4 x ? = 6 x 10 = 60, so ? = 15.",
+    "misconceptionMap": {"12": "additive_scaling_error", "16": "unequal_scaling", "20": "doubled_denominator"}
+  },
+  {
+    "id": "frac-equiv-h1", "topic": "Fractions", "concept": "frac_equiv", "difficulty": "hard", "prerequisites": ["frac_visual"],
+    "learningObjective": "Simplify a fraction to lowest terms.",
+    "question": "Simplify 42/56 to lowest terms.", "options": ["3/4", "6/8", "21/28", "4/3"], "correctAnswer": "3/4",
+    "hint": "Divide both numbers by their greatest common factor, 14.", "solutionSteps": "42 divided by 14 is 3 and 56 divided by 14 is 4, so the simplest form is 3/4.",
+    "misconceptionMap": {"6/8": "incomplete_simplification", "21/28": "incomplete_simplification", "4/3": "numerator_denominator_reversal"}
+  },
+  {
+    "id": "frac-compare-e1", "topic": "Fractions", "concept": "frac_compare", "difficulty": "easy", "prerequisites": ["frac_visual", "frac_equiv"],
+    "learningObjective": "Compare fractions with the same denominator.",
+    "question": "Which fraction is greater: 3/8 or 5/8?", "options": ["3/8", "5/8", "They are equal", "Cannot tell"], "correctAnswer": "5/8",
+    "hint": "The pieces are the same size, so compare how many pieces there are.", "solutionSteps": "Both denominators are 8, so compare numerators. Since 5 is greater than 3, 5/8 is greater.",
+    "misconceptionMap": {"3/8": "reversed_comparison", "They are equal": "denominator_only_comparison", "Cannot tell": "comparison_strategy_missing"}
+  },
+  {
+    "id": "frac-compare-m1", "topic": "Fractions", "concept": "frac_compare", "difficulty": "medium", "prerequisites": ["frac_visual", "frac_equiv"],
+    "learningObjective": "Compare unlike fractions with a common denominator.",
+    "question": "Which comparison is true?", "options": ["2/3 > 3/4", "2/3 < 3/4", "2/3 = 3/4", "The fractions cannot be compared"], "correctAnswer": "2/3 < 3/4",
+    "hint": "Rewrite both fractions in twelfths.", "solutionSteps": "2/3 = 8/12 and 3/4 = 9/12. Therefore 2/3 is less than 3/4.",
+    "misconceptionMap": {"2/3 > 3/4": "whole_number_comparison", "2/3 = 3/4": "equivalence_confusion", "The fractions cannot be compared": "comparison_strategy_missing"}
+  },
+  {
+    "id": "frac-compare-h1", "topic": "Fractions", "concept": "frac_compare", "difficulty": "hard", "prerequisites": ["frac_visual", "frac_equiv"],
+    "learningObjective": "Order unlike fractions using equivalent forms.",
+    "question": "Which list is ordered from least to greatest?", "options": ["2/5, 1/2, 3/4", "1/2, 2/5, 3/4", "3/4, 1/2, 2/5", "2/5, 3/4, 1/2"], "correctAnswer": "2/5, 1/2, 3/4",
+    "hint": "Use twentieths: 8/20, 10/20, and 15/20.", "solutionSteps": "2/5 = 8/20, 1/2 = 10/20, and 3/4 = 15/20, so that is the increasing order.",
+    "misconceptionMap": {"1/2, 2/5, 3/4": "whole_number_comparison", "3/4, 1/2, 2/5": "reversed_order", "2/5, 3/4, 1/2": "common_denominator_error"}
+  },
+  {
+    "id": "frac-ops-e1", "topic": "Fractions", "concept": "frac_operations", "difficulty": "easy", "prerequisites": ["frac_equiv", "frac_compare"],
+    "learningObjective": "Add fractions with the same denominator.",
+    "question": "Solve 2/9 + 4/9.", "options": ["6/18", "6/9", "8/9", "6/81"], "correctAnswer": "6/9",
+    "hint": "Keep the shared denominator and add the numerators.", "solutionSteps": "The parts are all ninths. Add 2 + 4 and keep denominator 9, giving 6/9.",
+    "misconceptionMap": {"6/18": "direct_denom_addition", "8/9": "operation_error", "6/81": "multiplied_denominators"}
+  },
+  {
+    "id": "frac-ops-m1", "topic": "Fractions", "concept": "frac_operations", "difficulty": "medium", "prerequisites": ["frac_equiv", "frac_compare"],
+    "learningObjective": "Add fractions with unlike denominators.",
+    "question": "Solve 1/2 + 1/3.", "options": ["2/5", "2/6", "5/6", "1/5"], "correctAnswer": "5/6",
+    "hint": "Convert both fractions to sixths before adding.", "solutionSteps": "1/2 = 3/6 and 1/3 = 2/6. Add to get 5/6.",
+    "misconceptionMap": {"2/5": "direct_denom_addition", "2/6": "numerator_only_addition", "1/5": "operation_error"}
+  },
+  {
+    "id": "frac-ops-h1", "topic": "Fractions", "concept": "frac_operations", "difficulty": "hard", "prerequisites": ["frac_equiv", "frac_compare"],
+    "learningObjective": "Multiply and simplify fractions.",
+    "question": "Solve and simplify 3/5 x 10/12.", "options": ["30/60", "1/2", "13/17", "6/5"], "correctAnswer": "1/2",
+    "hint": "Multiply across, then reduce the result completely.", "solutionSteps": "3 x 10 over 5 x 12 is 30/60. Divide both by 30 to get 1/2.",
+    "misconceptionMap": {"30/60": "incomplete_simplification", "13/17": "added_instead_of_multiplied", "6/5": "cross_multiply_confusion"}
+  },
+  {
+    "id": "force-e1", "topic": "Forces and Motion", "concept": "sci_force", "difficulty": "easy", "prerequisites": [], "learningObjective": "Identify balanced forces.",
+    "question": "A book rests on a table. Which statement is correct?", "options": ["No forces act", "Gravity and the table push are equal", "Only gravity acts", "The upward force is larger"], "correctAnswer": "Gravity and the table push are equal", "hint": "The book has no acceleration.", "solutionSteps": "A stationary book has zero net force. Gravity downward is balanced by the table's upward normal force.", "misconceptionMap": {"No forces act": "force_motion_link", "Only gravity acts": "balanced_force_ignored", "The upward force is larger": "net_force_confusion"}
+  },
+  {
+    "id": "gravity-m1", "topic": "Forces and Motion", "concept": "sci_gravity", "difficulty": "medium", "prerequisites": ["sci_force"], "learningObjective": "Distinguish mass and weight.",
+    "question": "An astronaut goes from Earth to the Moon. What changes?", "options": ["Mass and weight decrease", "Mass stays; weight decreases", "Weight stays; mass decreases", "Neither changes"], "correctAnswer": "Mass stays; weight decreases", "hint": "Weight depends on gravity; mass is matter.", "solutionSteps": "The astronaut has the same matter, so mass stays fixed. Weaker lunar gravity reduces weight.", "misconceptionMap": {"Mass and weight decrease": "mass_weight_equivalence", "Weight stays; mass decreases": "mass_weight_reversal", "Neither changes": "gravity_effect_ignored"}
+  },
+  {
+    "id": "netforce-h1", "topic": "Forces and Motion", "concept": "sci_net_force", "difficulty": "hard", "prerequisites": ["sci_force"], "learningObjective": "Relate constant velocity to net force.",
+    "question": "A spacecraft coasts at constant velocity in deep space. What is its net force?", "options": ["0 N", "Equal to its speed", "A constant forward force", "An increasing force"], "correctAnswer": "0 N", "hint": "Constant velocity means zero acceleration.", "solutionSteps": "With acceleration equal to zero, F = ma gives a net force of 0 N.", "misconceptionMap": {"Equal to its speed": "force_motion_link", "A constant forward force": "force_motion_link", "An increasing force": "force_motion_link"}
+  },
+  {
+    "id": "reaction-h1", "topic": "Forces and Motion", "concept": "sci_action_reaction", "difficulty": "hard", "prerequisites": ["sci_force", "sci_net_force"], "learningObjective": "Identify action-reaction force pairs.",
+    "question": "A truck hits a small car. Compare their forces on each other during impact.", "options": ["Truck exerts more", "Car exerts more", "Forces are equal in magnitude", "No force pair exists"], "correctAnswer": "Forces are equal in magnitude", "hint": "Use Newton's third law.", "solutionSteps": "Interaction forces form an equal-magnitude, opposite-direction pair regardless of the objects' masses.", "misconceptionMap": {"Truck exerts more": "mass_dominant_collision", "Car exerts more": "mass_dominant_collision", "No force pair exists": "action_reaction_missing"}
+  },
+  {
+    "id": "present-e1", "topic": "Verb Tenses", "concept": "eng_present", "difficulty": "easy", "prerequisites": [], "learningObjective": "Choose present progressive for an action happening now.",
+    "question": "Be quiet, the baby ____ right now.", "options": ["sleeps", "is sleeping", "slept", "has slept"], "correctAnswer": "is sleeping", "hint": "Right now signals an action in progress.", "solutionSteps": "An action happening now takes present progressive: is plus sleeping.", "misconceptionMap": {"sleeps": "past_habit_confusion", "slept": "time_marker_ignored", "has slept": "perfect_progressive_confusion"}
+  },
+  {
+    "id": "past-m1", "topic": "Verb Tenses", "concept": "eng_past", "difficulty": "medium", "prerequisites": ["eng_present"], "learningObjective": "Use past continuous for an interrupted action.",
+    "question": "While I ____ dinner, the phone rang.", "options": ["cooked", "was cooking", "have cooked", "cook"], "correctAnswer": "was cooking", "hint": "The cooking was already in progress.", "solutionSteps": "The longer background action uses past continuous: was cooking. The interruption uses simple past: rang.", "misconceptionMap": {"cooked": "past_continuous_confusion", "have cooked": "perfect_simple_past_overlap", "cook": "tense_agreement_error"}
+  },
+  {
+    "id": "perfect-h1", "topic": "Verb Tenses", "concept": "eng_perfect", "difficulty": "hard", "prerequisites": ["eng_past"], "learningObjective": "Use present perfect for an action continuing to now.",
+    "question": "I ____ in Delhi since 2018, and I still live there.", "options": ["lived", "have lived", "had lived", "am living"], "correctAnswer": "have lived", "hint": "The action began in the past and continues now.", "solutionSteps": "Present perfect connects the past starting point to the present: have lived.", "misconceptionMap": {"lived": "perfect_simple_past_overlap", "had lived": "past_perfect_confusion", "am living": "since_marker_ignored"}
+  }
+]

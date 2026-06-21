@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   Sparkles, Settings, CheckCircle, Zap, Trophy,
@@ -12,24 +12,24 @@ import { StudentAssessment } from '../components/assessment/StudentAssessment';
 import { Badge } from '../components/ui/Badge';
 import { getStoredApiKey, setStoredApiKey, SUBJECTS } from '../services/ai';
 import type { SubjectId, ConceptStatus } from '../types';
+import type { AssessmentReport } from '../adaptive';
 
 export function StudentPortal() {
-  const [apiKey, setApiKey] = useState('');
+  const [apiKey, setApiKey] = useState(getStoredApiKey);
   const [showSettings, setShowSettings] = useState(false);
   const [selectedConcept, setSelectedConcept] = useState('');
   const [activeGap, setActiveGap] = useState('');
   const [xp, setXp] = useState(340);
   const [streak] = useState(5);
-  const [level, setLevel] = useState(1);
-  const [badges, setBadges] = useState(['Quick Starter 🚀']);
+  const level = Math.floor(xp / 500) + 1;
+  const badges = level > 1 ? ['Quick Starter 🚀', `Level ${level} Champion 🏆`] : ['Quick Starter 🚀'];
   const [activeSubject, setActiveSubject] = useState<SubjectId>('math');
   const [subjectProgress, setSubjectProgress] = useState<Record<string, Record<string, ConceptStatus>>>({
     math: {
       frac_visual: 'unlocked',
       frac_equiv: 'locked',
-      frac_add_like: 'locked',
-      frac_add_unlike: 'locked',
-      frac_multiply: 'locked',
+      frac_compare: 'locked',
+      frac_operations: 'locked',
     },
     science: {
       sci_force: 'unlocked',
@@ -44,47 +44,28 @@ export function StudentPortal() {
     },
   });
 
-  useEffect(() => {
-    const calcLevel = Math.floor(xp / 500) + 1;
-    if (calcLevel > level) {
-      setLevel(calcLevel);
-      setBadges((prev) => [...prev, `Level ${calcLevel} Champion 🏆`]);
-    }
-  }, [xp, level]);
-
-  useEffect(() => {
-    const key = getStoredApiKey();
-    if (key) setApiKey(key);
-  }, []);
-
   const handleApiKeyChange = (val: string) => {
     setApiKey(val);
     setStoredApiKey(val);
   };
 
-  const handleAssessmentCompleted = (
-    conceptId: string,
-    isCorrect: boolean,
-    misconceptionId: string,
-    nextConceptId: string,
-    xpEarned: number
-  ) => {
+  const handleAssessmentCompleted = (report: AssessmentReport, xpEarned: number) => {
     setXp((prev) => prev + xpEarned);
     setSubjectProgress((prev) => {
       const currentSubjectMap = { ...prev[activeSubject] };
-      if (isCorrect) {
-        currentSubjectMap[conceptId] = 'mastered';
-        if (nextConceptId && currentSubjectMap[nextConceptId] === 'locked') {
-          currentSubjectMap[nextConceptId] = 'unlocked';
-        }
-        setActiveGap('');
-      } else {
-        currentSubjectMap[conceptId] = 'gap';
-        setActiveGap(misconceptionId);
-        if (nextConceptId && currentSubjectMap[nextConceptId] === 'locked') {
-          currentSubjectMap[nextConceptId] = 'unlocked';
-        }
-      }
+      report.analysis.strongConcepts.forEach((conceptId) => { currentSubjectMap[conceptId] = 'mastered'; });
+      report.analysis.weakConcepts.forEach((conceptId) => { currentSubjectMap[conceptId] = 'gap'; });
+      report.masteryChart.forEach(({ conceptId }) => {
+        if (currentSubjectMap[conceptId] === 'locked') currentSubjectMap[conceptId] = 'unlocked';
+      });
+      const nextConceptId = report.suggestedNextAssessment.conceptId;
+      if (currentSubjectMap[nextConceptId] === 'locked') currentSubjectMap[nextConceptId] = 'unlocked';
+
+      const firstWeakId = report.analysis.weakConcepts[0];
+      const misconceptionId = firstWeakId
+        ? report.analysis.conceptEvidence[firstWeakId]?.misconceptionIds.find((id) => id !== 'prerequisite_not_confirmed')
+        : undefined;
+      setActiveGap(misconceptionId ?? '');
       return { ...prev, [activeSubject]: currentSubjectMap };
     });
     setSelectedConcept('');

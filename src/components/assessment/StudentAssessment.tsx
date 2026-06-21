@@ -4,8 +4,10 @@ import {
   CheckCircle2, AlertCircle, HelpCircle, Loader2, Sparkles, ArrowRight,
   ArrowLeft, MessageSquare, Send, X, BarChart3, Trophy, ChevronRight,
 } from 'lucide-react';
-import { diagnoseResponse, getAdaptiveQuestion, chatWithTutor, CONCEPTS } from '../../services/ai';
-import type { Question, ChatMessage, DiagnosticResult } from '../../services/ai';
+import { chatWithTutor, CONCEPTS } from '../../services/ai';
+import type { ChatMessage } from '../../services/ai';
+import { adaptiveAssessmentEngine } from '../../adaptive';
+import type { AssessmentReport, AssessmentSession, DiagnosticResult, Question } from '../../adaptive';
 import { Card, CardHeader, CardBody } from '../ui/Card';
 import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
@@ -15,7 +17,7 @@ import { ProgressBar } from '../ui/ProgressRing';
 interface StudentAssessmentProps {
   apiKey: string;
   selectedConceptId: string;
-  onAssessmentCompleted: (conceptId: string, isCorrect: boolean, misconceptionId: string, nextConcept: string, xpEarned: number) => void;
+  onAssessmentCompleted: (report: AssessmentReport, xpEarned: number) => void;
   onBackToMap: () => void;
 }
 
@@ -30,7 +32,7 @@ const difficultyConfig = {
 
 function formatText(text: string) {
   if (!text) return '';
-  const parts = text.split(/(\$[^\$]+\$)/g);
+  const parts = text.split(/(\$[^$]+\$)/g);
   return parts.map((part, index) => {
     if (part.startsWith('$') && part.endsWith('$')) {
       return (
@@ -56,9 +58,9 @@ export function StudentAssessment({
   onAssessmentCompleted,
   onBackToMap,
 }: StudentAssessmentProps) {
-  const [question, setQuestion] = useState<Question | null>(null);
+  const [session] = useState<AssessmentSession>(() => adaptiveAssessmentEngine.createSession(selectedConceptId, TOTAL_QUESTIONS));
+  const [question, setQuestion] = useState<Question>(() => adaptiveAssessmentEngine.getCurrentQuestion(session));
   const [questionIndex, setQuestionIndex] = useState(0);
-  const [answeredQuestionIds, setAnsweredQuestionIds] = useState<string[]>([]);
   const [selectedOption, setSelectedOption] = useState('');
   const [workingText, setWorkingText] = useState('');
   const [showHint, setShowHint] = useState(false);
@@ -72,22 +74,19 @@ export function StudentAssessment({
   const [isChatLoading, setIsChatLoading] = useState(false);
   const [floatingXp, setFloatingXp] = useState<{ x: number; y: number } | null>(null);
   const [timerRunning, setTimerRunning] = useState(true);
+  const [report, setReport] = useState<AssessmentReport | null>(null);
+  const [adaptationReason, setAdaptationReason] = useState(session.pendingRecommendation?.reason ?? '');
 
   const chatEndRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    loadNextQuestion();
-    setQuestionIndex(0);
-    setResults({ correct: 0, total: 0, xp: 0 });
-    setShowSummary(false);
-    setTimerRunning(true);
-  }, [selectedConceptId]);
+  const sessionRef = useRef<AssessmentSession>(session);
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [chatHistory]);
 
-  const loadNextQuestion = async () => {
+  const loadNextQuestion = () => {
+    const session = sessionRef.current;
+    if (!session?.pendingRecommendation) return;
     setIsSubmitting(true);
     setDiagnosticResult(null);
     setSelectedOption('');
@@ -96,24 +95,21 @@ export function StudentAssessment({
     setShowTutorChat(false);
     setChatHistory([]);
 
-    try {
-      const q = await getAdaptiveQuestion(selectedConceptId, answeredQuestionIds, apiKey);
-      setQuestion(q);
-    } catch (err) {
-      console.error(err);
-    } finally {
-      setIsSubmitting(false);
-    }
+    setQuestion(adaptiveAssessmentEngine.getCurrentQuestion(session));
+    setAdaptationReason(session.pendingRecommendation.reason);
+    setIsSubmitting(false);
   };
 
   const handleSubmit = async (e: React.MouseEvent) => {
-    if (!question || !selectedOption) return;
+    const session = sessionRef.current;
+    if (!question || !selectedOption || !session) return;
     setIsSubmitting(true);
 
     try {
-      const result = await diagnoseResponse(question, workingText, selectedOption, apiKey);
+      const submission = adaptiveAssessmentEngine.submitAnswer(session, selectedOption, workingText);
+      const result = submission.diagnostic;
       setDiagnosticResult(result);
-      setAnsweredQuestionIds((prev) => [...prev, question.id]);
+      if (submission.report) setReport(submission.report);
 
       const xp = result.isCorrect ? 100 : 20;
       setResults((prev) => ({
@@ -148,15 +144,8 @@ export function StudentAssessment({
   };
 
   const handleFinish = () => {
-    if (!diagnosticResult || !question) return;
-    const xp = diagnosticResult.isCorrect ? 100 : 20;
-    onAssessmentCompleted(
-      question.concept,
-      diagnosticResult.isCorrect,
-      diagnosticResult.misconceptionId,
-      diagnosticResult.suggestedNextConcept,
-      xp
-    );
+    if (!report) return;
+    onAssessmentCompleted(report, results.xp);
   };
 
   const handleStartTutorChat = () => {
@@ -230,11 +219,64 @@ export function StudentAssessment({
 
             <ProgressBar value={accuracy} label="Overall Performance" className="mb-8 max-w-md mx-auto" />
 
+            {report && (
+              <div className="text-left space-y-5 mb-8">
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="glass-card rounded-xl p-4 border-success/20">
+                    <p className="text-xs uppercase tracking-wider text-success font-semibold mb-2">Strengths</p>
+                    <p className="text-sm text-text-secondary">{report.strengths.join(', ') || 'More evidence needed'}</p>
+                  </div>
+                  <div className="glass-card rounded-xl p-4 border-warning/20">
+                    <p className="text-xs uppercase tracking-wider text-warning font-semibold mb-2">Learning Gaps</p>
+                    <p className="text-sm text-text-secondary">{report.weaknesses.join(', ') || 'No critical gap detected'}</p>
+                  </div>
+                </div>
+
+                <div className="glass-card rounded-xl p-4">
+                  <div className="flex justify-between items-center mb-3">
+                    <p className="text-sm font-semibold">Concept Mastery</p>
+                    <Badge variant="primary">{report.confidenceScore}% confidence</Badge>
+                  </div>
+                  <div className="space-y-3">
+                    {report.masteryChart.map((item) => (
+                      <div key={item.conceptId}>
+                        <div className="flex justify-between text-xs mb-1">
+                          <span>{item.concept}</span>
+                          <span className="text-text-secondary">{item.mastery}% · {item.level}</span>
+                        </div>
+                        <div className="h-2 bg-white/5 rounded-full overflow-hidden">
+                          <div className="h-full bg-gradient-to-r from-primary to-secondary rounded-full" style={{ width: `${item.mastery}%` }} />
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="glass-card rounded-xl p-4">
+                  <p className="text-sm font-semibold mb-3">Personalized Learning Path</p>
+                  <div className="flex flex-wrap gap-2">
+                    {report.learningPath.map((step) => (
+                      <Badge key={step.conceptId} variant={step.status === 'review' ? 'warning' : step.status === 'ready' ? 'success' : 'primary'} className="normal-case">
+                        {step.order}. {step.conceptName}
+                      </Badge>
+                    ))}
+                  </div>
+                  <p className="text-xs text-text-secondary mt-3">
+                    Next assessment: <strong className="text-text">{report.suggestedNextAssessment.concept}</strong>. {report.suggestedNextAssessment.reason}
+                  </p>
+                </div>
+
+                {report.feedback.map((item) => (
+                  <p key={item} className="text-sm text-text-secondary border-l-2 border-primary pl-3">{item}</p>
+                ))}
+              </div>
+            )}
+
             <div className="flex flex-col sm:flex-row gap-3 justify-center">
               <Button variant="secondary" onClick={onBackToMap} icon={<ArrowLeft className="w-4 h-4" />}>
                 Back to Dashboard
               </Button>
-              <Button onClick={handleFinish} icon={<ChevronRight className="w-4 h-4" />}>
+              <Button onClick={handleFinish} disabled={!report} icon={<ChevronRight className="w-4 h-4" />}>
                 Save Progress
               </Button>
             </div>
@@ -312,7 +354,8 @@ export function StudentAssessment({
           <CardHeader>
             <div>
               <Badge variant="primary" className="mb-2 normal-case">Active Assessment</Badge>
-              <h2 className="text-lg font-semibold font-[family-name:var(--font-display)]">{getConceptName(selectedConceptId)}</h2>
+              <h2 className="text-lg font-semibold font-[family-name:var(--font-display)]">{getConceptName(question.concept)}</h2>
+              <p className="text-xs text-text-secondary mt-1 max-w-xl">{adaptationReason}</p>
             </div>
             <div className="flex items-center gap-3">
               <Timer initialSeconds={TIMER_SECONDS} running={timerRunning} />

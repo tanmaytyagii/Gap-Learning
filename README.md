@@ -59,9 +59,8 @@ The platform adapts in real time: it detects misconceptions, unlocks prerequisit
 │  └──────────┘         └──────┬───────┘       └──────┬───────┘  │
 │                              │                       │          │
 │                    ┌─────────▼───────────────────────▼────────┐ │
-│                    │           Services Layer (ai.ts)           │ │
-│                    │  · Adaptive Question Gen  · Diagnosis      │ │
-│                    │  · Socratic Chat          · Worksheets     │ │
+│                    │       Adaptive Intelligence Layer        │ │
+│                    │ Question · Adaptive · Gap · Report engines│ │
 │                    └─────────┬────────────────────────────────┘ │
 │                              │                                   │
 │                    ┌─────────▼─────────┐                          │
@@ -84,6 +83,18 @@ The platform adapts in real time: it detects misconceptions, unlocks prerequisit
 | Routing | React Router DOM |
 | AI | Google Gemini 2.5 Flash |
 | Deployment | Vercel |
+
+## Adaptive Intelligence
+
+The assessment works fully offline. Gemini remains optional for the Socratic tutor and worksheet generation, while the core assessment decisions are deterministic and explainable:
+
+1. Every question is tagged with its concept, difficulty, prerequisites, learning objective, and misconception-bearing distractors.
+2. Correct answers increase difficulty or advance to a ready dependent concept.
+3. Incorrect answers identify the distractor misconception, lower the target difficulty, and move to the weakest prerequisite.
+4. Mastery uses difficulty-weighted evidence with a neutral prior; confidence increases as more evidence is collected.
+5. The report returns strengths, weaknesses, concept mastery, confidence, targeted feedback, a graph-ordered learning path, and the next assessment.
+
+The engine is stateful only for the lifetime of an assessment session, so no database is required for the prototype.
 
 ## Design System
 
@@ -162,6 +173,12 @@ gap-learning/
 │   │   ├── layout/           # Navbar, footer
 │   │   ├── teacher/          # Teacher dashboard & charts
 │   │   └── ui/               # Design system (Button, Card, Badge…)
+│   ├── adaptive/
+│   │   ├── data/              # Knowledge graph + local JSON question bank
+│   │   ├── engines/           # Question, gap, feedback, recommendation, report
+│   │   ├── AdaptiveAssessmentEngine.ts # Session workflow facade
+│   │   ├── models.ts          # Typed assessment contracts
+│   │   └── index.ts           # Public engine API
 │   ├── data/                 # Mock data (testimonials, activity)
 │   ├── pages/                # Route-level page components
 │   ├── services/             # AI service layer (Gemini + fallbacks)

@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useState } from 'react';
 import { Clock } from 'lucide-react';
 import { cn } from '../../utils/cn';
 
@@ -11,10 +11,6 @@ interface TimerProps {
 
 export function Timer({ initialSeconds, onTimeUp, running = true, className }: TimerProps) {
   const [seconds, setSeconds] = useState(initialSeconds);
-
-  useEffect(() => {
-    setSeconds(initialSeconds);
-  }, [initialSeconds]);
 
   useEffect(() => {
     if (!running || seconds <= 0) return;
@@ -54,24 +50,4 @@ export function Timer({ initialSeconds, onTimeUp, running = true, className }: T
       </div>
     </div>
   );
-}
-
-export function useTimer(initialSeconds: number) {
-  const [seconds, setSeconds] = useState(initialSeconds);
-  const [running, setRunning] = useState(false);
-
-  const start = useCallback(() => setRunning(true), []);
-  const pause = useCallback(() => setRunning(false), []);
-  const reset = useCallback(() => {
-    setSeconds(initialSeconds);
-    setRunning(false);
-  }, [initialSeconds]);
-
-  useEffect(() => {
-    if (!running || seconds <= 0) return;
-    const interval = setInterval(() => setSeconds((s) => Math.max(0, s - 1)), 1000);
-    return () => clearInterval(interval);
-  }, [running, seconds]);
-
-  return { seconds, running, start, pause, reset, setRunning };
 }

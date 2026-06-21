@@ -171,6 +171,6 @@ export const AI_RECOMMENDATIONS = [
     title: 'Explore Multiplying Fractions',
     description: 'You\'re ready for the next challenge once unlike denominators are mastered.',
     action: 'Preview Topic',
-    conceptId: 'frac_multiply',
+    conceptId: 'frac_operations',
   },
 ];
