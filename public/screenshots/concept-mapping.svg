@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="720" viewBox="0 0 1280 720">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0F172A"/>
+      <stop offset="100%" style="stop-color:#1E293B"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#4F46E5"/>
+      <stop offset="100%" style="stop-color:#7C3AED"/>
+    </linearGradient>
+  </defs>
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <text x="640" y="60" fill="#F8FAFC" font-family="system-ui" font-size="28" font-weight="700" text-anchor="middle">Concept Mapping</text>
+  <rect x="40" y="90" width="1200" height="400" rx="16" fill="#1E293B" stroke="rgba(255,255,255,0.08)"/>
+  <text x="640" y="130" fill="#F8FAFC" font-family="system-ui" font-size="18" font-weight="600" text-anchor="middle">Interactive Knowledge Graph</text>
+  <circle cx="640" cy="220" r="35" fill="url(#accent)" opacity="0.9"/>
+  <text x="640" y="225" fill="white" font-family="system-ui" font-size="10" font-weight="600" text-anchor="middle">Fractions</text>
+  <circle cx="400" cy="340" r="30" fill="#10B981" opacity="0.7"/>
+  <text x="400" y="345" fill="white" font-family="system-ui" font-size="9" text-anchor="middle">Equivalent</text>
+  <circle cx="880" cy="340" r="30" fill="#4F46E5" opacity="0.7"/>
+  <text x="880" y="345" fill="white" font-family="system-ui" font-size="9" text-anchor="middle">Add Like</text>
+  <circle cx="640" cy="440" r="30" fill="#F59E0B" opacity="0.7"/>
+  <text x="640" y="445" fill="white" font-family="system-ui" font-size="9" text-anchor="middle">Unlike Den.</text>
+  <line x1="620" y1="250" x2="420" y2="310" stroke="rgba(16,185,129,0.5)" stroke-width="2"/>
+  <line x1="660" y1="250" x2="860" y2="310" stroke="rgba(79,70,229,0.5)" stroke-width="2" stroke-dasharray="6 4"/>
+  <line x1="400" y1="370" x2="610" y2="415" stroke="rgba(255,255,255,0.15)" stroke-width="2" stroke-dasharray="6 4"/>
+  <line x1="880" y1="370" x2="670" y2="415" stroke="rgba(255,255,255,0.15)" stroke-width="2" stroke-dasharray="6 4"/>
+  <rect x="40" y="510" width="380" height="180" rx="12" fill="#1E293B" stroke="rgba(255,255,255,0.08)"/>
+  <rect x="450" y="510" width="380" height="180" rx="12" fill="#1E293B" stroke="rgba(255,255,255,0.08)"/>
+  <rect x="860" y="510" width="380" height="180" rx="12" fill="rgba(245,158,11,0.05)" stroke="#F59E0B" stroke-opacity="0.3"/>
+  <text x="230" y="545" fill="#F8FAFC" font-family="system-ui" font-size="14" font-weight="600" text-anchor="middle">Visualizing Fractions</text>
+  <text x="640" y="545" fill="#F8FAFC" font-family="system-ui" font-size="14" font-weight="600" text-anchor="middle">Equivalent Fractions</text>
+  <text x="1050" y="545" fill="#FBBF24" font-family="system-ui" font-size="14" font-weight="600" text-anchor="middle">Gap: Denom Addition</text>
+</svg>
