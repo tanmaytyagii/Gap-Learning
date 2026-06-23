@@ -5,7 +5,14 @@ import type { Difficulty, Question } from '../models';
 const DIFFICULTY_RANK: Record<Difficulty, number> = { easy: 1, medium: 2, hard: 3 };
 
 export class QuestionEngine {
-  private readonly questions = questionBankData as unknown as Question[];
+  // Initialize with local bank as fallback
+  private questions: Question[] = questionBankData as unknown as Question[];
+
+  setQuestions(dynamicQuestions: Question[]) {
+    if (dynamicQuestions && dynamicQuestions.length > 0) {
+      this.questions = dynamicQuestions;
+    }
+  }
 
   getById(questionId: string): Question {
     const question = this.questions.find((item) => item.id === questionId);

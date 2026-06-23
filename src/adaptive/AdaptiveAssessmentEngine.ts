@@ -12,6 +12,10 @@ function createId(): string {
 
 export class AdaptiveAssessmentEngine {
   private readonly questionEngine = new QuestionEngine();
+
+  getQuestionEngine(): QuestionEngine {
+    return this.questionEngine;
+  }
   private readonly gapAnalysisEngine = new GapAnalysisEngine();
   private readonly feedbackEngine = new FeedbackEngine();
   private readonly recommendationEngine = new RecommendationEngine(this.questionEngine);

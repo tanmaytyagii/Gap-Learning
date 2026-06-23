@@ -184,8 +184,12 @@ export function TeacherDashboard({ apiKey }: TeacherDashboardProps) {
   };
 
   const formatText = (text: string) => {
-    const parts = text.split(/(\$[^$]+\$)/g);
+    // Handle **bold** and $highlight$
+    const parts = text.split(/(\*\*.*?\*\*|\$.*?\$)/g);
     return parts.map((part, index) => {
+      if (part.startsWith('**') && part.endsWith('**')) {
+        return <strong key={index} className="font-bold text-white">{part.slice(2, -2)}</strong>;
+      }
       if (part.startsWith('$') && part.endsWith('$')) {
         return <strong key={index} className="text-primary-light">{part.slice(1, -1)}</strong>;
       }
@@ -428,6 +432,102 @@ export function TeacherDashboard({ apiKey }: TeacherDashboardProps) {
           </CardBody>
         </Card>
       </div>
+
+      <div className="grid grid-cols-1 gap-6">
+        <AddQuestionCard />
+      </div>
     </div>
+  );
+}
+
+function AddQuestionCard() {
+  const [concept, setConcept] = useState('frac_basic');
+  const [questionText, setQuestionText] = useState('');
+  const [optionsStr, setOptionsStr] = useState('');
+  const [correctAnswer, setCorrectAnswer] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [message, setMessage] = useState('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setMessage('');
+    try {
+      const { addQuestion } = await import('../../services/apiClient');
+      const options = optionsStr.split(',').map((o) => o.trim()).filter(Boolean);
+      const res = await addQuestion({
+        concept,
+        question: questionText,
+        options,
+        correctAnswer: correctAnswer.trim(),
+        difficulty: 'medium',
+      });
+      if (res) {
+        setMessage('Question added to dataset successfully!');
+        setQuestionText('');
+        setOptionsStr('');
+        setCorrectAnswer('');
+      } else {
+        setMessage('Failed to add question.');
+      }
+    } catch (err) {
+      setMessage('Error connecting to backend.');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <Card glow="primary">
+      <CardHeader>
+        <div className="flex items-center gap-2">
+          <Target className="w-5 h-5 text-primary-light" />
+          <h3 className="font-semibold font-[family-name:var(--font-display)]">Add Custom Question to Dataset</h3>
+        </div>
+      </CardHeader>
+      <CardBody>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block text-sm mb-1 text-text-secondary">Concept ID</label>
+            <input 
+              required 
+              value={concept} 
+              onChange={(e) => setConcept(e.target.value)} 
+              className="w-full bg-black/25 border border-white/10 rounded-xl px-4 py-2 text-sm outline-none focus:border-primary/50" 
+            />
+          </div>
+          <div>
+            <label className="block text-sm mb-1 text-text-secondary">Question Text</label>
+            <textarea 
+              required 
+              value={questionText} 
+              onChange={(e) => setQuestionText(e.target.value)} 
+              className="w-full bg-black/25 border border-white/10 rounded-xl px-4 py-2 text-sm outline-none focus:border-primary/50 min-h-[80px]" 
+            />
+          </div>
+          <div>
+            <label className="block text-sm mb-1 text-text-secondary">Options (comma separated)</label>
+            <input 
+              required 
+              value={optionsStr} 
+              onChange={(e) => setOptionsStr(e.target.value)} 
+              className="w-full bg-black/25 border border-white/10 rounded-xl px-4 py-2 text-sm outline-none focus:border-primary/50" 
+              placeholder="e.g. 1/2, 1/4, 2/4, 3/4"
+            />
+          </div>
+          <div>
+            <label className="block text-sm mb-1 text-text-secondary">Correct Answer</label>
+            <input 
+              required 
+              value={correctAnswer} 
+              onChange={(e) => setCorrectAnswer(e.target.value)} 
+              className="w-full bg-black/25 border border-white/10 rounded-xl px-4 py-2 text-sm outline-none focus:border-primary/50" 
+            />
+          </div>
+          <Button type="submit" loading={isSubmitting} variant="primary">Add to Dataset</Button>
+          {message && <p className="text-sm mt-2 font-medium text-primary-light">{message}</p>}
+        </form>
+      </CardBody>
+    </Card>
   );
 }
