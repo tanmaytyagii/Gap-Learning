@@ -1,5 +1,7 @@
 export type Difficulty = 'easy' | 'medium' | 'hard';
 
+export const DIFFICULTIES: readonly Difficulty[] = ['easy', 'medium', 'hard'];
+
 export type MasteryLevel = 'beginning' | 'developing' | 'proficient' | 'mastered';
 
 export interface ConceptNode {
@@ -13,20 +15,32 @@ export interface ConceptNode {
   learningObjective: string;
 }
 
+export interface Misconception {
+  id: string;
+  subject: string;
+  title: string;
+  /** What the learner believes, written in the third person (used on gap pages). */
+  description: string;
+  /** Second-person feedback shown right after a wrong answer. */
+  explanation: string;
+  remedy: string;
+}
+
 export interface Question {
   id: string;
-  topic: string;
   concept: string;
   difficulty: Difficulty;
-  prerequisites: string[];
   learningObjective: string;
   question: string;
   options: string[];
   correctAnswer: string;
   hint: string;
   solutionSteps: string;
+  /** Maps each wrong option to the misconception it reveals. */
   misconceptionMap: Record<string, string>;
 }
+
+export type SessionMode = 'diagnostic' | 'practice' | 'review';
 
 export interface StudentResponse {
   questionId: string;
@@ -43,7 +57,11 @@ export interface StudentResponse {
 export interface DiagnosticResult {
   isCorrect: boolean;
   misconceptionId: string;
+  misconceptionTitle: string | null;
   explanation: string;
+  remedy: string | null;
+  /** Prerequisite concepts worth revisiting when the answer was wrong. */
+  reviewConceptIds: string[];
   suggestedNextConcept: string;
   reasoning: string;
 }
@@ -77,7 +95,7 @@ export interface LearningPathStep {
 
 export interface QuestionRecommendation {
   question: Question;
-  type: 'baseline' | 'challenge' | 'progression' | 'remediation';
+  type: 'baseline' | 'challenge' | 'progression' | 'remediation' | 'review';
   reason: string;
   targetConcept: string;
   targetDifficulty: Difficulty;
@@ -108,9 +126,19 @@ export interface AssessmentReport {
   analysis: GapAnalysis;
 }
 
+export interface SessionOptions {
+  mode: SessionMode;
+  /** Concepts the session may ask about. Diagnostics may roam the whole subject graph. */
+  conceptIds: string[];
+  maxQuestions: number;
+  startDifficulty?: Difficulty;
+}
+
 export interface AssessmentSession {
   id: string;
+  mode: SessionMode;
   subject: string;
+  scope: string[];
   startingConceptId: string;
   currentConceptId: string;
   currentDifficulty: Difficulty;

@@ -1,14 +1,18 @@
 {
-  "name": "server",
+  "name": "gap-learning-server",
   "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "private": true,
+  "description": "GapLearning API: curated question bank and a server-side AI proxy.",
+  "main": "src/index.js",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=20.19"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": "",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "node --test"
+  },
   "dependencies": {
     "cors": "^2.8.6",
     "express": "^5.2.1"

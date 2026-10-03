@@ -1,17 +1,31 @@
 {
   "name": "gap-learning",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Find the gaps in what you know and close them deliberately: adaptive diagnostics, explainable gap scoring, spaced review, and progress analytics.",
   "type": "module",
+  "workspaces": [
+    "server"
+  ],
+  "engines": {
+    "node": ">=20.19"
+  },
   "scripts": {
-    "dev": "vite",
+    "dev": "node scripts/dev.mjs",
+    "dev:web": "vite",
+    "dev:server": "npm run dev --workspace server",
     "build": "tsc -b && vite build",
+    "preview": "vite preview",
+    "start": "npm run start --workspace server",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "typecheck": "tsc -b",
+    "test": "vitest run && npm run test --workspace server",
+    "test:watch": "vitest",
+    "test:e2e": "npm run build && playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "check": "npm run lint && npm run typecheck && npm test && npm run build"
   },
   "dependencies": {
-    "@google/generative-ai": "^0.24.1",
-    "framer-motion": "^12.40.0",
     "lucide-react": "^1.21.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
@@ -20,6 +34,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.63.0",
     "@tailwindcss/vite": "^4.3.1",
     "@types/node": "^24.12.3",
     "@types/react": "^19.2.14",
@@ -32,6 +47,7 @@
     "tailwindcss": "^4.3.1",
     "typescript": "~6.0.2",
     "typescript-eslint": "^8.59.2",
-    "vite": "^8.0.12"
+    "vite": "^8.0.12",
+    "vitest": "^5.0.3"
   }
 }

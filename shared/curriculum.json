@@ -1,0 +1,801 @@
+{
+  "version": 1,
+  "subjects": [
+    {
+      "id": "math",
+      "name": "Mathematics",
+      "description": "Fractions, from part–whole models to equivalence, comparison, and operations."
+    },
+    {
+      "id": "science",
+      "name": "Physics",
+      "description": "Forces and motion: mass and weight, net force, and Newton's three laws."
+    },
+    {
+      "id": "english",
+      "name": "English Grammar",
+      "description": "Verb tenses: present, past, and perfect forms, and when to use each."
+    }
+  ],
+  "concepts": [
+    {
+      "id": "frac_visual",
+      "subject": "math",
+      "topic": "Fractions",
+      "name": "Basic Fractions",
+      "difficulty": "easy",
+      "prerequisites": [],
+      "description": "Recognize numerators, denominators, and fractions as equal parts of a whole.",
+      "learningObjective": "Represent and interpret a fraction as equal parts of one whole.",
+      "lesson": {
+        "summary": "A fraction describes equal parts of one whole. The denominator (bottom number) tells you how many equal parts the whole is split into; the numerator (top number) tells you how many of those parts you are counting. On a number line, the distance from 0 to 1 is the whole, and each equal space is one unit fraction.",
+        "keyPoints": [
+          "The parts must be equal in size, otherwise the picture does not show a fraction.",
+          "Denominator = the total number of equal parts in one whole.",
+          "Numerator = the number of parts the question asks about.",
+          "On a number line, count the spaces between marks, not the marks themselves."
+        ],
+        "example": {
+          "problem": "A chocolate bar has 10 equal pieces. You eat 3. What fraction of the bar is left?",
+          "steps": [
+            "The whole is split into 10 equal pieces, so the denominator is 10.",
+            "The question asks about what is left: 10 − 3 = 7 pieces.",
+            "The fraction left is 7/10."
+          ]
+        }
+      }
+    },
+    {
+      "id": "frac_equiv",
+      "subject": "math",
+      "topic": "Fractions",
+      "name": "Equivalent Fractions",
+      "difficulty": "medium",
+      "prerequisites": ["frac_visual"],
+      "description": "Recognize and generate fractions that represent the same value, and simplify to lowest terms.",
+      "learningObjective": "Create equivalent fractions by scaling numerator and denominator equally.",
+      "lesson": {
+        "summary": "Equivalent fractions name the same amount with different numbers. You create one by multiplying (or dividing) the numerator and denominator by the same non-zero number. This cuts the same whole into more (or fewer) pieces without changing how much is taken. Simplifying means dividing both terms by their greatest common factor until no common factor is left.",
+        "keyPoints": [
+          "Multiply or divide top and bottom by the same number; never add or subtract.",
+          "Scaling both terms by k keeps the value because k/k = 1.",
+          "A fraction is in lowest terms when numerator and denominator share no factor other than 1.",
+          "To find a missing term, work out the scale factor between the known pair first."
+        ],
+        "example": {
+          "problem": "Find the missing number: 2/3 = ?/12",
+          "steps": [
+            "The denominator went from 3 to 12, so the scale factor is 12 ÷ 3 = 4.",
+            "Apply the same factor to the numerator: 2 × 4 = 8.",
+            "So 2/3 = 8/12."
+          ]
+        }
+      }
+    },
+    {
+      "id": "frac_compare",
+      "subject": "math",
+      "topic": "Fractions",
+      "name": "Comparing Fractions",
+      "difficulty": "medium",
+      "prerequisites": ["frac_visual", "frac_equiv"],
+      "description": "Compare and order fractions using benchmarks and common denominators.",
+      "learningObjective": "Compare two fractions and justify the comparison using equivalent forms.",
+      "lesson": {
+        "summary": "To compare fractions, they need to describe pieces of the same size. With equal denominators, compare the numerators. With equal numerators, the fraction with the smaller denominator is larger because its pieces are bigger. Otherwise, rewrite both with a common denominator, or compare each one with a benchmark such as 1/2 or 1.",
+        "keyPoints": [
+          "Same denominator: more pieces means a larger fraction.",
+          "Same numerator: bigger pieces (smaller denominator) means a larger fraction.",
+          "Unlike fractions: rename with a common denominator, then compare numerators.",
+          "Benchmarks (0, 1/2, 1) give a fast sanity check."
+        ],
+        "example": {
+          "problem": "Which is larger, 3/5 or 2/3?",
+          "steps": [
+            "A common denominator for 5 and 3 is 15.",
+            "3/5 = 9/15 and 2/3 = 10/15.",
+            "10/15 > 9/15, so 2/3 is larger."
+          ]
+        }
+      }
+    },
+    {
+      "id": "frac_operations",
+      "subject": "math",
+      "topic": "Fractions",
+      "name": "Fraction Operations",
+      "difficulty": "hard",
+      "prerequisites": ["frac_equiv", "frac_compare"],
+      "description": "Add, subtract, and multiply fractions accurately.",
+      "learningObjective": "Select and apply the correct procedure for fraction operations.",
+      "lesson": {
+        "summary": "Adding or subtracting fractions combines pieces, so the pieces must be the same size first: rename to a common denominator, add or subtract the numerators, and keep the denominator. Multiplying fractions finds a part of a part: multiply the numerators together and the denominators together, then simplify.",
+        "keyPoints": [
+          "Add and subtract: common denominator first; the denominator stays the same in the answer.",
+          "Never add or subtract denominators. They describe piece size, not a count.",
+          "Multiply: numerator × numerator over denominator × denominator.",
+          "Always simplify the final answer to lowest terms."
+        ],
+        "example": {
+          "problem": "Solve 1/4 + 2/3.",
+          "steps": [
+            "Rename to twelfths: 1/4 = 3/12 and 2/3 = 8/12.",
+            "Add the numerators: 3 + 8 = 11, and keep the denominator 12.",
+            "1/4 + 2/3 = 11/12, which is already in lowest terms."
+          ]
+        }
+      }
+    },
+    {
+      "id": "sci_force",
+      "subject": "science",
+      "topic": "Forces and Motion",
+      "name": "Concept of Force",
+      "difficulty": "easy",
+      "prerequisites": [],
+      "description": "Understand forces as pushes or pulls measured in newtons, and combine them into a net force.",
+      "learningObjective": "Identify balanced and unbalanced forces.",
+      "lesson": {
+        "summary": "A force is a push or a pull on an object, measured in newtons (N). Forces have both size and direction. When several forces act on an object, their combined effect is the net force: forces in the same direction add, and opposite forces subtract. If the forces are balanced (net force zero), the object's motion does not change.",
+        "keyPoints": [
+          "Force is measured in newtons (N) and has both magnitude and direction.",
+          "Same-direction forces add; opposite forces subtract.",
+          "Balanced forces (net force = 0) mean no change in motion: the object stays at rest or keeps moving steadily.",
+          "A stationary object usually has several forces acting on it that cancel out."
+        ],
+        "example": {
+          "problem": "A crate is pushed right with 30 N while friction acts left with 12 N. What is the net force?",
+          "steps": [
+            "The forces point in opposite directions, so subtract: 30 − 12 = 18 N.",
+            "The larger force points right, so the net force is 18 N to the right.",
+            "Because the net force is not zero, the crate accelerates to the right."
+          ]
+        }
+      }
+    },
+    {
+      "id": "sci_gravity",
+      "subject": "science",
+      "topic": "Forces and Motion",
+      "name": "Gravity, Mass & Weight",
+      "difficulty": "medium",
+      "prerequisites": ["sci_force"],
+      "description": "Distinguish mass from gravitational weight and apply W = mg.",
+      "learningObjective": "Explain how gravity changes weight but not mass.",
+      "lesson": {
+        "summary": "Mass is the amount of matter in an object, measured in kilograms, and it is the same everywhere. Weight is the gravitational force on that mass, measured in newtons, and it depends on local gravity: W = m × g. On Earth g ≈ 10 N/kg (9.8 more precisely); on the Moon it is about one-sixth of that.",
+        "keyPoints": [
+          "Mass (kg) does not change with location; weight (N) does.",
+          "Weight = mass × gravitational field strength (W = mg).",
+          "Without air resistance, all objects fall with the same acceleration regardless of mass.",
+          "Gravity still acts in orbit. Astronauts float because they are in free fall."
+        ],
+        "example": {
+          "problem": "A 5 kg backpack is taken to the Moon (g ≈ 1.6 N/kg). What are its mass and weight there?",
+          "steps": [
+            "Mass does not change: it is still 5 kg.",
+            "Weight = m × g = 5 × 1.6 = 8 N.",
+            "On Earth the same backpack weighs about 5 × 10 = 50 N."
+          ]
+        }
+      }
+    },
+    {
+      "id": "sci_net_force",
+      "subject": "science",
+      "topic": "Forces and Motion",
+      "name": "Net Force & Motion",
+      "difficulty": "hard",
+      "prerequisites": ["sci_force"],
+      "description": "Connect net force, acceleration, and constant velocity using Newton's first and second laws.",
+      "learningObjective": "Apply Newton's first and second laws to motion.",
+      "lesson": {
+        "summary": "Newton's first law: an object keeps doing what it is doing (staying at rest or moving at constant velocity) unless a net force acts on it. Newton's second law quantifies this: F_net = m × a. A net force changes velocity, meaning speed or direction. It is not needed to keep something moving.",
+        "keyPoints": [
+          "Constant velocity means zero acceleration, so the net force is zero.",
+          "F = ma, so a = F ÷ m. The same force accelerates a smaller mass more.",
+          "Changing direction is acceleration, even at constant speed.",
+          "Moving objects slow down because of friction or drag, not because a 'moving force' runs out."
+        ],
+        "example": {
+          "problem": "A 1,200 kg car accelerates at 2 m/s². What net force acts on it?",
+          "steps": [
+            "Use F = m × a.",
+            "F = 1,200 × 2 = 2,400 N.",
+            "The net force is 2,400 N in the direction of the acceleration."
+          ]
+        }
+      }
+    },
+    {
+      "id": "sci_action_reaction",
+      "subject": "science",
+      "topic": "Forces and Motion",
+      "name": "Action & Reaction",
+      "difficulty": "hard",
+      "prerequisites": ["sci_force", "sci_net_force"],
+      "description": "Recognize equal and opposite interaction force pairs (Newton's third law).",
+      "learningObjective": "Apply Newton's third law to interactions.",
+      "lesson": {
+        "summary": "Newton's third law: whenever object A pushes or pulls on object B, B pushes or pulls on A with a force of equal size in the opposite direction. The two forces act on different objects, so they never cancel each other out. Differences in what happens to each object come from differences in mass (a = F/m), not from differences in force.",
+        "keyPoints": [
+          "Interaction forces always come in pairs of equal size and opposite direction.",
+          "The two forces act on different objects, so they cannot cancel.",
+          "A heavier object does not exert a bigger force in a collision; it just accelerates less.",
+          "A pair is always the same type of force (gravity with gravity, contact with contact)."
+        ],
+        "example": {
+          "problem": "A 60 kg skater pushes a 30 kg skater with 90 N. What force acts on the 60 kg skater, and who accelerates more?",
+          "steps": [
+            "By the third law, the 30 kg skater pushes back on the 60 kg skater with 90 N.",
+            "Accelerations: 90 ÷ 60 = 1.5 m/s² and 90 ÷ 30 = 3 m/s².",
+            "The forces are equal, but the lighter skater accelerates twice as much."
+          ]
+        }
+      }
+    },
+    {
+      "id": "eng_present",
+      "subject": "english",
+      "topic": "Verb Tenses",
+      "name": "Present & Progressive Tenses",
+      "difficulty": "easy",
+      "prerequisites": [],
+      "description": "Distinguish habits and facts (simple present) from actions happening now (present progressive).",
+      "learningObjective": "Choose simple present or present progressive from context.",
+      "lesson": {
+        "summary": "Use the simple present (she works) for habits, routines, general truths, and states. Use the present progressive (she is working) for actions happening right now or temporary situations around now. Time markers are the clue: 'every day', 'usually', and 'always' point to the simple present; 'now', 'right now', 'at the moment', 'this week', and 'Look!' point to the progressive.",
+        "keyPoints": [
+          "Simple present: habits, routines, and facts (Water boils at 100 °C).",
+          "Present progressive: am/is/are + -ing for actions happening now or temporarily.",
+          "In the simple present, he/she/it adds -s (she walks).",
+          "Stative verbs (know, want, believe, own) usually stay in the simple present."
+        ],
+        "example": {
+          "problem": "Complete: 'He usually ____ (take) the bus, but today he ____ (walk).'",
+          "steps": [
+            "'Usually' signals a habit, so use the simple present: takes.",
+            "'Today' signals a temporary action, so use the present progressive: is walking.",
+            "He usually takes the bus, but today he is walking."
+          ]
+        }
+      }
+    },
+    {
+      "id": "eng_past",
+      "subject": "english",
+      "topic": "Verb Tenses",
+      "name": "Past Tense Contrast",
+      "difficulty": "medium",
+      "prerequisites": ["eng_present"],
+      "description": "Distinguish completed past actions (simple past) from actions in progress (past continuous).",
+      "learningObjective": "Choose simple past or past continuous from context.",
+      "lesson": {
+        "summary": "The simple past (I cooked) describes completed actions at a finished time. The past continuous (I was cooking) describes an action in progress at a past moment, often as the background to another event. In a 'when' or 'while' sentence, the longer background action takes the past continuous and the short interrupting action takes the simple past.",
+        "keyPoints": [
+          "Simple past: finished actions (yesterday, last night, in 2019).",
+          "Past continuous: was/were + -ing for an action in progress at a past moment.",
+          "Background action → past continuous; interruption → simple past.",
+          "Irregular verbs have special past forms (lose → lost, see → saw)."
+        ],
+        "example": {
+          "problem": "Complete: 'I ____ (read) when the lights ____ (go) out.'",
+          "steps": [
+            "Reading was already in progress, so it is the background action: was reading.",
+            "The lights going out was the short interruption: went.",
+            "I was reading when the lights went out."
+          ]
+        }
+      }
+    },
+    {
+      "id": "eng_perfect",
+      "subject": "english",
+      "topic": "Verb Tenses",
+      "name": "Present Perfect vs. Past",
+      "difficulty": "hard",
+      "prerequisites": ["eng_past"],
+      "description": "Connect past events to the present accurately with the present perfect.",
+      "learningObjective": "Choose present perfect or simple past from time context.",
+      "lesson": {
+        "summary": "The present perfect (have/has + past participle) links the past to now: life experiences so far, actions whose result matters now, and situations that started in the past and continue ('since 2018', 'for ten years'). The simple past is for actions tied to a finished time ('yesterday', 'last Monday', 'in 2015'). A finished-time expression rules out the present perfect.",
+        "keyPoints": [
+          "Present perfect = have/has + past participle (have lived, has been).",
+          "Use it with 'since' and 'for' (continuing situations), 'ever', 'never', 'already', 'yet', and life experiences.",
+          "Use the simple past with finished-time markers: yesterday, last week, ago, in 2015.",
+          "The past perfect (had + participle) is for 'the past before another past event', not for 'up to now'."
+        ],
+        "example": {
+          "problem": "Complete: 'I ____ (know) her since we were children.'",
+          "steps": [
+            "'Since' marks a starting point that continues to now.",
+            "That calls for the present perfect: have known.",
+            "I have known her since we were children."
+          ]
+        }
+      }
+    }
+  ],
+  "misconceptions": [
+    {
+      "id": "answered_eaten_not_remaining",
+      "subject": "math",
+      "title": "Question-Target Confusion",
+      "description": "Represents the part mentioned in the problem instead of the part the question asks for.",
+      "explanation": "You represented the part mentioned in the problem rather than the part the question asked for. Identify the requested quantity before forming the numerator.",
+      "remedy": "Underline the quantity requested, then label the numerator before calculating."
+    },
+    {
+      "id": "answered_unshaded_not_shaded",
+      "subject": "math",
+      "title": "Part Selection Confusion",
+      "description": "Counts the complementary (unshaded) region instead of the region named in the question.",
+      "explanation": "You counted the unshaded parts. The numerator must count only the parts named in the question.",
+      "remedy": "Name the target region aloud and count only those parts for the numerator."
+    },
+    {
+      "id": "numerator_denominator_reversal",
+      "subject": "math",
+      "title": "Numerator–Denominator Reversal",
+      "description": "Swaps the number of selected parts and the total number of equal parts.",
+      "explanation": "You reversed the fraction. The numerator counts the selected parts; the denominator counts all the equal parts in the whole.",
+      "remedy": "Rebuild the part–whole model: numerator is selected parts, denominator is all equal parts."
+    },
+    {
+      "id": "denominator_ignored",
+      "subject": "math",
+      "title": "Denominator Ignored",
+      "description": "Gives a count, or compares numerators only, without accounting for the size of the parts.",
+      "explanation": "Your answer leaves out the size of the parts. A fraction needs its denominator to say how many equal parts make the whole.",
+      "remedy": "Practice pairing every part count with the total number of equal parts."
+    },
+    {
+      "id": "counted_partition_size_only",
+      "subject": "math",
+      "title": "Unit Fraction Fixation",
+      "description": "Identifies the size of one part but not how many parts have been counted.",
+      "explanation": "You found the size of one step (a unit fraction) but did not count how many steps were taken. Count each equal space from zero.",
+      "remedy": "Label every tick mark on the number line (1/4, 2/4, 3/4 …) before reading off a value."
+    },
+    {
+      "id": "number_line_counting_error",
+      "subject": "math",
+      "title": "Number Line Counting Error",
+      "description": "Miscounts intervals on a number line, counting marks instead of spaces or losing track of completed wholes.",
+      "explanation": "You miscounted on the number line. Count the equal spaces from zero, and remember that every full group of parts makes one whole.",
+      "remedy": "Jump along the number line one space at a time, saying each fraction aloud, and mark where each whole number falls."
+    },
+    {
+      "id": "whole_unit_confusion",
+      "subject": "math",
+      "title": "Whole-Unit Confusion",
+      "description": "Treats the whole number-line segment (for example 0 to 2) as one whole instead of the interval from 0 to 1.",
+      "explanation": "You used the entire number line as the whole. On a number line the whole is the distance from 0 to 1, so the denominator comes from how that unit is divided.",
+      "remedy": "Box the interval from 0 to 1 first and count its equal parts to find the denominator."
+    },
+    {
+      "id": "partition_count_error",
+      "subject": "math",
+      "title": "Partition Counting Error",
+      "description": "Miscounts the number of equal parts in the whole, for example by adding rows and columns instead of multiplying.",
+      "explanation": "You miscounted the total number of equal parts. A grid of 3 columns and 4 rows has 3 × 4 = 12 equal parts, not 3 + 4.",
+      "remedy": "Count every small equal part (or multiply rows × columns) before writing the denominator."
+    },
+    {
+      "id": "additive_scaling_error",
+      "subject": "math",
+      "title": "Additive Scaling",
+      "description": "Adds the same number to the numerator and denominator instead of multiplying both by the same factor.",
+      "explanation": "You used addition to scale the fraction. Equivalent fractions keep their value only when the numerator and denominator are multiplied by the same factor.",
+      "remedy": "Use fraction bars to show that equivalent fractions multiply both terms by the same factor."
+    },
+    {
+      "id": "unequal_scaling",
+      "subject": "math",
+      "title": "Unequal Scaling",
+      "description": "Changes the numerator and denominator by different factors.",
+      "explanation": "The numerator and denominator were changed by different factors, so the value of the fraction changed.",
+      "remedy": "Write one scale factor beside both the numerator and the denominator before calculating."
+    },
+    {
+      "id": "denominator_only_scaling",
+      "subject": "math",
+      "title": "Denominator-Only Scaling",
+      "description": "Scales the denominator but leaves the numerator unchanged.",
+      "explanation": "Only the denominator was scaled. Both parts must be multiplied by the same number to keep the value.",
+      "remedy": "Write the scale factor next to both terms and apply it to each one."
+    },
+    {
+      "id": "copied_denominator",
+      "subject": "math",
+      "title": "Unscaled Term Copied",
+      "description": "Copies a number from the original fraction instead of scaling it.",
+      "explanation": "You copied a number from the original fraction instead of scaling it. Find the factor that changes one term, then apply that factor to the other.",
+      "remedy": "Draw an arrow from each original term to its new position and write '× factor' on both arrows."
+    },
+    {
+      "id": "cross_multiply_confusion",
+      "subject": "math",
+      "title": "Cross-Multiplication Confusion",
+      "description": "Applies a cross-multiplication shortcut where it does not belong.",
+      "explanation": "You used a cross-multiplication shortcut where it doesn't apply. For equivalent fractions, scale both terms by one factor; for multiplication, multiply straight across and simplify.",
+      "remedy": "Model multiplication as a part of a part, then multiply straight across and simplify."
+    },
+    {
+      "id": "doubled_denominator",
+      "subject": "math",
+      "title": "Doubling Shortcut",
+      "description": "Assumes a term doubles, or follows a simple pattern, without finding the actual scale factor.",
+      "explanation": "You assumed a simple doubling pattern. Work out the actual scale factor between the known terms first.",
+      "remedy": "Divide the new term by the old one to find the exact scale factor before scaling."
+    },
+    {
+      "id": "incomplete_simplification",
+      "subject": "math",
+      "title": "Incomplete Simplification",
+      "description": "Produces an equivalent fraction that has not been reduced to lowest terms.",
+      "explanation": "Your value is equivalent, but it is not in lowest terms. Keep dividing the numerator and denominator by a common factor.",
+      "remedy": "Find the greatest common factor and divide both terms until no common factor remains."
+    },
+    {
+      "id": "reversed_comparison",
+      "subject": "math",
+      "title": "Reversed Comparison",
+      "description": "Picks the smaller fraction when asked for the larger, or reverses the inequality.",
+      "explanation": "You chose the smaller value. With the same denominator, the fraction with more pieces is larger.",
+      "remedy": "Shade both fractions on identical bars and compare the shaded lengths."
+    },
+    {
+      "id": "denominator_only_comparison",
+      "subject": "math",
+      "title": "Denominator-Only Comparison",
+      "description": "Compares fractions by looking only at the denominators, ignoring how many pieces there are.",
+      "explanation": "You compared only the denominators. Piece size matters, but so does the number of pieces, so compare the complete fractions.",
+      "remedy": "Before comparing, say both parts aloud: how big are the pieces, and how many are there?"
+    },
+    {
+      "id": "whole_number_comparison",
+      "subject": "math",
+      "title": "Whole-Number Comparison",
+      "description": "Compares numerators or denominators as separate whole numbers.",
+      "explanation": "You compared the numerator or denominator as separate whole numbers. Rewrite both fractions with a common denominator, then compare equal-sized parts.",
+      "remedy": "Rename both fractions with a common denominator, or compare each with one-half."
+    },
+    {
+      "id": "equivalence_confusion",
+      "subject": "math",
+      "title": "False Equivalence",
+      "description": "Treats two different fractions as equal because they look similar.",
+      "explanation": "These fractions are not equal. Rename them with a common denominator to see the difference.",
+      "remedy": "Convert both fractions to a common denominator and compare numerators before concluding they are equal."
+    },
+    {
+      "id": "comparison_strategy_missing",
+      "subject": "math",
+      "title": "Missing Comparison Strategy",
+      "description": "Does not yet recognize how unlike fractions can be compared.",
+      "explanation": "Unlike fractions can be compared. Use a common denominator or a benchmark such as one-half.",
+      "remedy": "Practice benchmark fractions and common-denominator visual models."
+    },
+    {
+      "id": "reversed_order",
+      "subject": "math",
+      "title": "Reversed Ordering",
+      "description": "Orders values from greatest to least when asked for least to greatest.",
+      "explanation": "Your list is in reverse order. Least to greatest means the smallest value comes first.",
+      "remedy": "Convert to a common denominator, write the numerators in order, then re-read the direction the question asks for."
+    },
+    {
+      "id": "common_denominator_error",
+      "subject": "math",
+      "title": "Renaming Error",
+      "description": "Makes an arithmetic mistake when renaming fractions with a common denominator.",
+      "explanation": "An error crept in while renaming to a common denominator. Whatever you multiply the denominator by, multiply the numerator by the same number.",
+      "remedy": "After renaming, check that each equivalent fraction simplifies back to the original."
+    },
+    {
+      "id": "direct_denom_addition",
+      "subject": "math",
+      "title": "Combining Denominators",
+      "description": "Adds or subtracts the denominators as well as the numerators.",
+      "explanation": "You combined the denominators as well as the numerators. Denominators describe the size of the pieces, so once the pieces match the denominator stays the same and only the numerators are added or subtracted.",
+      "remedy": "Use fraction bars to establish equal-sized parts before combining numerators."
+    },
+    {
+      "id": "numerator_only_addition",
+      "subject": "math",
+      "title": "Adding Before Renaming",
+      "description": "Adds numerators while the fractions still represent different part sizes.",
+      "explanation": "You added the numerators without first renaming the fractions as equal-sized parts.",
+      "remedy": "Require a common-denominator step before any addition step."
+    },
+    {
+      "id": "operation_error",
+      "subject": "math",
+      "title": "Wrong Operation",
+      "description": "Performs a different operation from the one the problem asks for.",
+      "explanation": "You used a different operation from the one the question asked for. Re-read the operation sign before you start.",
+      "remedy": "Circle the operation sign and say the procedure for that operation before calculating."
+    },
+    {
+      "id": "multiplied_denominators",
+      "subject": "math",
+      "title": "Multiplied Denominators in Addition",
+      "description": "Multiplies the denominators when adding fractions that already share a denominator.",
+      "explanation": "You multiplied the denominators, but these fractions already had the same denominator. When the pieces match, keep the denominator and add the numerators.",
+      "remedy": "Check whether the denominators already match; only rename when they differ."
+    },
+    {
+      "id": "added_instead_of_multiplied",
+      "subject": "math",
+      "title": "Added Instead of Multiplied",
+      "description": "Adds numerators and denominators when the problem requires multiplication.",
+      "explanation": "You added the terms, but the problem asks for a product ('of' means multiply). Multiply the numerators together and the denominators together.",
+      "remedy": "Translate 'of' and '×' into multiplication, then multiply straight across."
+    },
+    {
+      "id": "force_motion_link",
+      "subject": "science",
+      "title": "Force–Motion Link",
+      "description": "Believes motion requires a continuing force, or that an object at rest has no forces acting on it.",
+      "explanation": "You linked motion itself to force. A net force causes acceleration; constant velocity (including staying at rest) means the forces balance to zero.",
+      "remedy": "Contrast velocity with acceleration using frictionless motion and Newton's first law."
+    },
+    {
+      "id": "balanced_force_ignored",
+      "subject": "science",
+      "title": "Ignored Balancing Force",
+      "description": "Overlooks one of the forces in a balanced situation, such as the normal force or friction.",
+      "explanation": "You left out a force. An object at rest or moving steadily has forces that balance, so find the force that cancels the one you noticed.",
+      "remedy": "Draw a free-body diagram and list every force (gravity, normal, friction, applied, drag) before deciding."
+    },
+    {
+      "id": "net_force_confusion",
+      "subject": "science",
+      "title": "Net Force Misjudged",
+      "description": "Misjudges whether forces are balanced, assuming an imbalance where there is none or the reverse.",
+      "explanation": "You misjudged the net force. If the object's velocity isn't changing, the forces balance exactly; if it is changing, they don't.",
+      "remedy": "Start from the motion: is the velocity changing? Use that to decide whether the net force is zero."
+    },
+    {
+      "id": "forces_added_not_combined",
+      "subject": "science",
+      "title": "Opposing Forces Added",
+      "description": "Adds forces that point in opposite directions instead of subtracting them.",
+      "explanation": "You added forces that point in opposite directions. Opposing forces partly cancel, so subtract the smaller from the larger.",
+      "remedy": "Assign + and − to the two directions and add the signed values."
+    },
+    {
+      "id": "net_force_direction_error",
+      "subject": "science",
+      "title": "Net Force Direction Error",
+      "description": "Finds the correct size of the net force but gives it the wrong direction.",
+      "explanation": "The size is right but the direction is wrong. The net force points the same way as the larger force.",
+      "remedy": "After subtracting, ask which force was bigger. The net force points its way."
+    },
+    {
+      "id": "force_energy_confusion",
+      "subject": "science",
+      "title": "Force–Quantity Confusion",
+      "description": "Confuses force with energy, mass, or speed, and mixes up their units.",
+      "explanation": "Force is measured in newtons (N). Joules measure energy, kilograms measure mass, and m/s measures speed.",
+      "remedy": "Make a table of quantity → unit (force → N, mass → kg, energy → J, speed → m/s) and quiz yourself."
+    },
+    {
+      "id": "impetus_misconception",
+      "subject": "science",
+      "title": "Impetus Misconception",
+      "description": "Believes a thrown or pushed object carries a 'force of the throw' after it is released.",
+      "explanation": "Once an object leaves your hand, your push no longer acts on it. After release, only forces from things touching it, plus gravity, act on it.",
+      "remedy": "For each moment in the motion, list only what is touching the object right now, plus gravity."
+    },
+    {
+      "id": "mass_weight_equivalence",
+      "subject": "science",
+      "title": "Mass–Weight Equivalence",
+      "description": "Treats mass and gravitational weight as interchangeable.",
+      "explanation": "You treated mass and weight as the same quantity. Mass measures matter, while weight depends on local gravity.",
+      "remedy": "Compare one object on Earth and the Moon: its matter stays fixed while its weight changes."
+    },
+    {
+      "id": "mass_weight_reversal",
+      "subject": "science",
+      "title": "Mass–Weight Reversal",
+      "description": "Thinks mass changes with location while weight stays fixed, which is the reverse of reality.",
+      "explanation": "It's the other way round: mass (the amount of matter) is fixed, while weight depends on gravity and changes from place to place.",
+      "remedy": "Remember: mass = matter (never changes); weight = gravity's pull (changes with g)."
+    },
+    {
+      "id": "gravity_effect_ignored",
+      "subject": "science",
+      "title": "Gravity's Effect Ignored",
+      "description": "Overlooks how gravity affects weight or motion, for example assuming weight is unchanged under weaker gravity.",
+      "explanation": "You left gravity out of the reasoning. Weight is W = mg, so it changes when g changes, and gravity keeps acting on moving objects.",
+      "remedy": "Write W = mg every time weight is involved and substitute the local value of g."
+    },
+    {
+      "id": "weight_formula_error",
+      "subject": "science",
+      "title": "Weight Formula Error",
+      "description": "Applies W = mg incorrectly: dividing by g, dropping it, or mixing up kilograms and newtons.",
+      "explanation": "Check the formula: weight in newtons = mass in kilograms × g. Newtons and kilograms are not interchangeable.",
+      "remedy": "Write units through the whole calculation: kg × N/kg = N."
+    },
+    {
+      "id": "heavier_falls_faster",
+      "subject": "science",
+      "title": "Heavier Falls Faster",
+      "description": "Believes heavier objects fall faster than lighter ones even without air resistance.",
+      "explanation": "Without air resistance, all objects fall with the same acceleration. A heavier object feels more gravitational force but also has more mass to accelerate, so a = F/m stays the same.",
+      "remedy": "Compare the ratio F/m for a light and a heavy object. It equals g in both cases."
+    },
+    {
+      "id": "no_gravity_in_space",
+      "subject": "science",
+      "title": "No Gravity in Space",
+      "description": "Believes there is no gravity on the Moon or in orbit.",
+      "explanation": "Gravity doesn't switch off in space. The Moon has weaker gravity, and orbiting astronauts float because they are falling around Earth together with their spacecraft.",
+      "remedy": "Recall that the Moon stays in orbit because of Earth's gravity. Gravity reaches far into space."
+    },
+    {
+      "id": "newton_second_law_error",
+      "subject": "science",
+      "title": "F = ma Misapplied",
+      "description": "Rearranges or applies F = ma incorrectly, or ignores the role of mass in acceleration.",
+      "explanation": "Check F = ma: acceleration = net force ÷ mass. A larger mass means a smaller acceleration for the same force.",
+      "remedy": "Write F = ma, rearrange symbolically for the unknown first, then substitute numbers with units."
+    },
+    {
+      "id": "direction_change_ignored",
+      "subject": "science",
+      "title": "Direction Change Ignored",
+      "description": "Does not recognize that changing direction is acceleration, even at constant speed.",
+      "explanation": "Velocity includes direction. Turning changes velocity, so there is an acceleration and a net force toward the center of the turn.",
+      "remedy": "Ask two questions: is the speed changing, and is the direction changing? Either one means acceleration."
+    },
+    {
+      "id": "mass_dominant_collision",
+      "subject": "science",
+      "title": "Mass-Dominant Force Fallacy",
+      "description": "Believes the larger object exerts the larger force in an interaction.",
+      "explanation": "You assumed the heavier object applies more force. Newton's third law says the two forces are equal and opposite; the lighter object simply accelerates more.",
+      "remedy": "Use paired force arrows to demonstrate Newton's third law, then discuss acceleration separately."
+    },
+    {
+      "id": "action_reaction_missing",
+      "subject": "science",
+      "title": "Missing Reaction Force",
+      "description": "Does not recognize that every force has an equal and opposite partner force.",
+      "explanation": "Every force is one half of an interaction pair. If A pushes on B, B pushes back on A with a force of the same size.",
+      "remedy": "For each force, name its partner by swapping the two objects: 'A on B' ↔ 'B on A'."
+    },
+    {
+      "id": "unequal_pair_forces",
+      "subject": "science",
+      "title": "Unequal Pair Forces",
+      "description": "Believes the two forces in an action–reaction pair can differ in size.",
+      "explanation": "Action–reaction forces are always exactly equal in size. What differs is the effect, which depends on each object's mass.",
+      "remedy": "Separate 'how big are the forces?' (always equal) from 'what happens to each object?' (depends on mass)."
+    },
+    {
+      "id": "pair_on_same_object",
+      "subject": "science",
+      "title": "Pair on the Same Object",
+      "description": "Treats two forces on the same object (such as weight and the normal force) as a third-law pair, or thinks a pair cancels out.",
+      "explanation": "Third-law pairs act on different objects, so they never cancel each other. Two balanced forces on the same object are a different idea (Newton's first law).",
+      "remedy": "Label every force as 'X on Y'. A third-law pair is 'X on Y' and 'Y on X': the same two objects, swapped."
+    },
+    {
+      "id": "past_habit_confusion",
+      "subject": "english",
+      "title": "Habit vs. Progressive Confusion",
+      "description": "Mixes up the simple present (habits, facts) and the present progressive (actions happening now or temporarily).",
+      "explanation": "Check the time signal: habits, routines, and general truths take the simple present; actions happening now or temporarily take am/is/are + -ing.",
+      "remedy": "Sort sentences by time markers such as 'every day' and 'right now'."
+    },
+    {
+      "id": "time_marker_ignored",
+      "subject": "english",
+      "title": "Time Marker Ignored",
+      "description": "Chooses a tense that conflicts with a time expression in the sentence.",
+      "explanation": "The sentence contains a time marker ('right now', 'yesterday', 'every day'…) that fixes the tense. Find it first, then choose the verb form.",
+      "remedy": "Underline time expressions before choosing a verb form."
+    },
+    {
+      "id": "perfect_progressive_confusion",
+      "subject": "english",
+      "title": "Perfect Used for Present Action",
+      "description": "Uses a perfect form for an action that is simply happening now or temporarily.",
+      "explanation": "The present perfect links the past to now. For an action simply in progress now, use am/is/are + -ing.",
+      "remedy": "Ask: is this something in progress right now (progressive) or a past event connected to now (perfect)?"
+    },
+    {
+      "id": "past_continuous_confusion",
+      "subject": "english",
+      "title": "Past Continuous Confusion",
+      "description": "Uses the simple past for a background action in progress, or swaps the background and interrupting actions.",
+      "explanation": "The longer action already in progress takes the past continuous (was/were + -ing); the short action that interrupts it takes the simple past.",
+      "remedy": "Draw a timeline: a long bar for the ongoing action and an X for the interruption."
+    },
+    {
+      "id": "perfect_simple_past_overlap",
+      "subject": "english",
+      "title": "Perfect vs. Past Misuse",
+      "description": "Uses the simple past for a situation connected to the present, or the present perfect with a finished time.",
+      "explanation": "Finished times (yesterday, in 2015, last Monday) take the simple past. Situations that continue to now, or matter now, take the present perfect.",
+      "remedy": "Draw timelines that contrast finished past events with events continuing through now."
+    },
+    {
+      "id": "tense_agreement_error",
+      "subject": "english",
+      "title": "Tense Agreement Error",
+      "description": "Uses a verb tense that does not match the time frame of the rest of the sentence.",
+      "explanation": "The verb doesn't match the time frame set by the rest of the sentence. Keep related actions in a consistent time frame.",
+      "remedy": "Identify the time frame of the main clause and check every verb against it."
+    },
+    {
+      "id": "past_perfect_confusion",
+      "subject": "english",
+      "title": "Past Perfect Misuse",
+      "description": "Uses the past perfect (had + participle) where the present perfect or simple past is needed.",
+      "explanation": "The past perfect describes something before another past event. For a situation connected to now, use the present perfect; for a finished time, use the simple past.",
+      "remedy": "Only use 'had + participle' when you can point to a second, later past event."
+    },
+    {
+      "id": "since_marker_ignored",
+      "subject": "english",
+      "title": "Since/For Signal Ignored",
+      "description": "Ignores 'since' or 'for', which signal a situation continuing up to now.",
+      "explanation": "'Since' and 'for' describe a period that continues to the present, which calls for the present perfect (have/has + participle).",
+      "remedy": "When you see 'since' or 'for' with a period reaching now, use have/has + participle."
+    },
+    {
+      "id": "subject_verb_agreement",
+      "subject": "english",
+      "title": "Subject–Verb Agreement",
+      "description": "Drops or misuses the third-person -s, or pairs has/have with the wrong subject.",
+      "explanation": "Match the verb to the subject: he/she/it takes 'walks' and 'has'; I/you/we/they take 'walk' and 'have'.",
+      "remedy": "Find the subject first, then check the verb ending (-s for he/she/it in the present)."
+    },
+    {
+      "id": "auxiliary_form_error",
+      "subject": "english",
+      "title": "Auxiliary Form Error",
+      "description": "Combines a helping verb with the wrong main-verb form, or leaves the helping verb out.",
+      "explanation": "Helping verbs need specific verb forms: be + -ing (is raining), have + past participle (have finished). Check that both parts are present and matched.",
+      "remedy": "Memorize the pairs: am/is/are/was/were + -ing; have/has/had + past participle."
+    },
+    {
+      "id": "stative_progressive",
+      "subject": "english",
+      "title": "Stative Verb in Progressive",
+      "description": "Uses the progressive form with stative verbs such as know, believe, want, or own.",
+      "explanation": "Verbs that describe states (know, believe, want, own, like) are normally used in simple forms, not with -ing.",
+      "remedy": "Keep a list of common stative verbs and check it whenever you choose a progressive form."
+    },
+    {
+      "id": "irregular_past_error",
+      "subject": "english",
+      "title": "Irregular Verb Form",
+      "description": "Uses the wrong past or past-participle form of an irregular verb (losed, has went).",
+      "explanation": "This verb is irregular. Learn its past form (lose → lost, go → went) and its past participle (go → gone, see → seen).",
+      "remedy": "Practice irregular verbs in three columns: base form, past simple, past participle."
+    },
+    {
+      "id": "prerequisite_not_confirmed",
+      "subject": "general",
+      "title": "Prerequisite Not Confirmed",
+      "description": "An error on an advanced skill suggests that a prerequisite concept may be unstable.",
+      "explanation": "Performance on an advanced skill suggests its prerequisite knowledge should be checked directly.",
+      "remedy": "Run a short prerequisite check before returning to the advanced concept."
+    },
+    {
+      "id": "unknown",
+      "subject": "general",
+      "title": "Unclassified Error",
+      "description": "The answer is incorrect but does not match a known misconception pattern.",
+      "explanation": "This answer doesn't match a known misconception pattern, so the underlying concept needs another targeted check.",
+      "remedy": "Explain your first step out loud, then try another question on the same concept."
+    }
+  ]
+}

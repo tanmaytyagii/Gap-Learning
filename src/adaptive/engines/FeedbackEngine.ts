@@ -1,60 +1,78 @@
-import { getConcept } from '../data/knowledgeGraph';
-import type { DiagnosticResult, Question } from '../models';
+import type { KnowledgeGraph } from '../KnowledgeGraph';
+import type { DiagnosticResult, Misconception, Question } from '../models';
 
-const MISCONCEPTION_EXPLANATIONS: Record<string, string> = {
-  answered_eaten_not_remaining: 'You identified the eaten part instead of the remaining part. Read the quantity being asked for before forming the numerator.',
-  answered_unshaded_not_shaded: 'You counted the unshaded parts. The numerator must count only the parts named in the question.',
-  numerator_denominator_reversal: 'You reversed the fraction. The numerator counts selected parts; the denominator records all equal parts.',
-  denominator_ignored: 'Your answer omitted the whole. A fraction needs the denominator to show how many equal parts make the whole.',
-  additive_scaling_error: 'You used addition to scale the fraction. Equivalent fractions preserve a ratio only when numerator and denominator are multiplied by the same factor.',
-  unequal_scaling: 'The numerator and denominator were changed by different factors, so the value of the fraction changed.',
-  denominator_only_scaling: 'Only the denominator was scaled. Both parts must be multiplied by the same number to preserve the value.',
-  incomplete_simplification: 'Your value is equivalent, but it is not in lowest terms. Continue dividing numerator and denominator by a common factor.',
-  whole_number_comparison: 'You compared numerator or denominator as separate whole numbers. Rewrite both fractions with a common denominator, then compare equal-sized parts.',
-  comparison_strategy_missing: 'Unlike fractions can be compared. Use a common denominator or a benchmark such as one-half.',
-  direct_denom_addition: 'You added denominators directly. Denominators describe part sizes, so make the part sizes equal before adding numerators.',
-  numerator_only_addition: 'You added numerators without first renaming the fractions as equal-sized parts.',
-  cross_multiply_confusion: 'You used a comparison shortcut as a multiplication rule. For fraction multiplication, multiply straight across and simplify.',
-  force_motion_link: 'You linked motion itself to net force. Net force causes acceleration; constant velocity means the forces balance to zero.',
-  mass_weight_equivalence: 'You treated mass and weight as the same quantity. Mass measures matter, while weight depends on local gravity.',
-  mass_dominant_collision: 'You assumed the heavier object applies more interaction force. Newton\'s third law says the two forces are equal and opposite.',
-  past_habit_confusion: 'You used a habitual tense for an event happening now. Time markers such as “right now” require the progressive form.',
-  perfect_simple_past_overlap: 'You placed an ongoing situation entirely in the past. “Since” plus a condition continuing now calls for present perfect.',
-  prerequisite_not_confirmed: 'Performance on an advanced skill suggests its prerequisite knowledge should be checked directly.',
-  unknown: 'The selected answer does not match a known misconception pattern, so the underlying concept needs another targeted check.',
+export type MisconceptionLookup = (id: string) => Misconception | undefined;
+
+const FALLBACK: Misconception = {
+  id: 'unknown',
+  subject: 'general',
+  title: 'Unclassified Error',
+  description: 'The answer is incorrect but does not match a known misconception pattern.',
+  explanation: "This answer doesn't match a known misconception pattern, so the underlying concept needs another targeted check.",
+  remedy: 'Explain your first step out loud, then try another question on the same concept.',
 };
 
+export function normalizeAnswer(value: string): string {
+  return value.trim().replace(/\s+/g, ' ').toLowerCase();
+}
+
+function lowerFirst(text: string): string {
+  return text.charAt(0).toLowerCase() + text.slice(1);
+}
+
 export class FeedbackEngine {
+  private readonly graph: KnowledgeGraph;
+  private readonly lookup: MisconceptionLookup;
+
+  constructor(graph: KnowledgeGraph, lookup: MisconceptionLookup) {
+    this.graph = graph;
+    this.lookup = lookup;
+  }
+
+  misconception(id: string): Misconception {
+    return this.lookup(id) ?? this.lookup('unknown') ?? FALLBACK;
+  }
+
   diagnose(question: Question, selectedAnswer: string): DiagnosticResult {
-    const isCorrect = selectedAnswer.trim().toLowerCase() === question.correctAnswer.trim().toLowerCase();
-    const concept = getConcept(question.concept);
+    const isCorrect = normalizeAnswer(selectedAnswer) === normalizeAnswer(question.correctAnswer);
+    const concept = this.graph.get(question.concept);
+    const objective = question.learningObjective || concept.learningObjective;
 
     if (isCorrect) {
       return {
         isCorrect: true,
         misconceptionId: 'none',
-        explanation: `Your answer shows that you can ${question.learningObjective.charAt(0).toLowerCase()}${question.learningObjective.slice(1)}`,
+        misconceptionTitle: null,
+        explanation: `Your answer shows that you can ${lowerFirst(objective)}`,
+        remedy: null,
+        reviewConceptIds: [],
         suggestedNextConcept: question.concept,
-        reasoning: `Correct evidence on ${concept.name} at ${question.difficulty} difficulty raises mastery and unlocks a harder or dependent skill.`,
+        reasoning: `Correct evidence on ${concept.name} at ${question.difficulty} difficulty raises mastery.`,
       };
     }
 
     const misconceptionId = question.misconceptionMap[selectedAnswer] ?? 'unknown';
-    const prerequisite = concept.prerequisites[0] ? getConcept(concept.prerequisites[0]) : concept;
-    const cause = MISCONCEPTION_EXPLANATIONS[misconceptionId] ?? MISCONCEPTION_EXPLANATIONS.unknown;
+    const misconception = this.misconception(misconceptionId);
+    const known = misconception.id !== 'unknown';
     return {
       isCorrect: false,
-      misconceptionId,
-      explanation: `You struggled with ${concept.name} because this answer suggests: ${cause} Review ${prerequisite.name} before advancing, then retry this objective: ${concept.learningObjective}`,
-      suggestedNextConcept: prerequisite.id,
-      reasoning: `The distractor “${selectedAnswer}” maps to ${misconceptionId}; the knowledge graph points to ${prerequisite.name} for remediation.`,
+      misconceptionId: misconception.id,
+      misconceptionTitle: known ? misconception.title : null,
+      explanation: misconception.explanation,
+      remedy: misconception.remedy,
+      reviewConceptIds: concept.prerequisites,
+      suggestedNextConcept: concept.prerequisites[0] ?? concept.id,
+      reasoning: known
+        ? `The option “${selectedAnswer}” is the distractor for ${misconception.title}.`
+        : `The option “${selectedAnswer}” is not linked to a known misconception.`,
     };
   }
 
   explainGap(conceptId: string, misconceptionIds: string[]): string {
-    const concept = getConcept(conceptId);
-    const explanation = misconceptionIds.map((id) => MISCONCEPTION_EXPLANATIONS[id]).find(Boolean)
-      ?? MISCONCEPTION_EXPLANATIONS.unknown;
-    return `${concept.name}: ${explanation}`;
+    const concept = this.graph.get(conceptId);
+    const explanation = misconceptionIds
+      .map((id) => this.lookup(id))
+      .find((item): item is Misconception => Boolean(item) && item?.id !== 'unknown');
+    return `${concept.name}: ${(explanation ?? this.misconception('unknown')).explanation}`;
   }
 }

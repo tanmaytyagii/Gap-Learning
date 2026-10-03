@@ -1,31 +1,39 @@
+import type { ReactNode } from 'react';
 import { cn } from '../../utils/cn';
 
-type BadgeVariant = 'primary' | 'success' | 'warning' | 'danger' | 'info' | 'neutral';
+export type Tone = 'neutral' | 'accent' | 'success' | 'warning' | 'orange' | 'danger' | 'info' | 'ai';
 
-interface BadgeProps {
-  children: React.ReactNode;
-  variant?: BadgeVariant;
-  className?: string;
-}
-
-const variants: Record<BadgeVariant, string> = {
-  primary: 'bg-primary/15 text-primary-light border-primary/25',
-  success: 'bg-success/15 text-emerald-400 border-success/25',
-  warning: 'bg-warning/15 text-amber-400 border-warning/25',
-  danger: 'bg-danger/15 text-red-400 border-danger/25',
-  info: 'bg-blue-500/15 text-blue-400 border-blue-500/25',
-  neutral: 'bg-white/5 text-text-secondary border-white/10',
+const TONE_STYLES: Record<Tone, string> = {
+  neutral: 'bg-surface-2 text-fg-2 ring-border',
+  accent: 'bg-accent-soft text-accent-fg ring-transparent',
+  success: 'bg-success-soft text-success ring-transparent',
+  warning: 'bg-warning-soft text-warning ring-transparent',
+  orange: 'bg-orange-soft text-orange ring-transparent',
+  danger: 'bg-danger-soft text-danger ring-transparent',
+  info: 'bg-info-soft text-info ring-transparent',
+  ai: 'bg-ai-soft text-ai ring-transparent',
 };
 
-export function Badge({ children, variant = 'primary', className }: BadgeProps) {
+interface BadgeProps {
+  tone?: Tone;
+  icon?: ReactNode;
+  children: ReactNode;
+  className?: string;
+  title?: string;
+}
+
+export function Badge({ tone = 'neutral', icon, children, className, title }: BadgeProps) {
   return (
     <span
+      title={title}
       className={cn(
-        'inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold uppercase tracking-wide border',
-        variants[variant],
-        className
+        'inline-flex h-6 shrink-0 items-center gap-1 whitespace-nowrap rounded-md px-2 text-xs font-medium ring-1 ring-inset',
+        '[&_svg]:size-3.5',
+        TONE_STYLES[tone],
+        className,
       )}
     >
+      {icon}
       {children}
     </span>
   );

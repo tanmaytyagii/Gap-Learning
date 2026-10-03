@@ -1,16 +1,27 @@
-import { getConcept } from '../data/knowledgeGraph';
+import type { KnowledgeGraph } from '../KnowledgeGraph';
 import type { ConceptEvidence, GapAnalysis, MasteryLevel, StudentResponse } from '../models';
 
-const DIFFICULTY_WEIGHT = { easy: 0.8, medium: 1, hard: 1.2 } as const;
+export const DIFFICULTY_WEIGHT = { easy: 0.8, medium: 1, hard: 1.2 } as const;
 
-function toMasteryLevel(score: number): MasteryLevel {
+export function toMasteryLevel(score: number): MasteryLevel {
   if (score >= 85) return 'mastered';
   if (score >= 70) return 'proficient';
   if (score >= 50) return 'developing';
   return 'beginning';
 }
 
+/** Confidence grows with the amount of evidence and is capped below certainty. */
+export function confidenceFromAttempts(attempts: number): number {
+  return attempts === 0 ? 0 : Math.min(95, 40 + attempts * 15);
+}
+
 export class GapAnalysisEngine {
+  private readonly graph: KnowledgeGraph;
+
+  constructor(graph: KnowledgeGraph) {
+    this.graph = graph;
+  }
+
   analyze(responses: StudentResponse[]): GapAnalysis {
     const grouped = new Map<string, StudentResponse[]>();
     responses.forEach((response) => {
@@ -29,7 +40,6 @@ export class GapAnalysisEngine {
       );
       // A small neutral prior prevents a single answer from claiming absolute mastery.
       const masteryScore = Math.round(((earnedWeight + 0.5) / (totalWeight + 1)) * 100);
-      const confidenceScore = Math.min(95, 40 + conceptResponses.length * 15);
       const misconceptionIds = [...new Set(
         conceptResponses.filter((response) => !response.isCorrect).map((response) => response.misconceptionId),
       )];
@@ -39,7 +49,7 @@ export class GapAnalysisEngine {
         attempts: conceptResponses.length,
         correct: conceptResponses.filter((response) => response.isCorrect).length,
         masteryScore,
-        confidenceScore,
+        confidenceScore: confidenceFromAttempts(conceptResponses.length),
         masteryLevel: toMasteryLevel(masteryScore),
         evidence: 'observed',
         misconceptionIds,
@@ -48,8 +58,8 @@ export class GapAnalysisEngine {
 
     // A failed advanced concept is also evidence that an unobserved prerequisite should be checked.
     Object.values(conceptEvidence).forEach((evidence) => {
-      if (evidence.masteryScore >= 50) return;
-      getConcept(evidence.conceptId).prerequisites.forEach((prerequisiteId) => {
+      if (evidence.masteryScore >= 50 || !this.graph.has(evidence.conceptId)) return;
+      this.graph.get(evidence.conceptId).prerequisites.forEach((prerequisiteId) => {
         if (conceptEvidence[prerequisiteId]) return;
         conceptEvidence[prerequisiteId] = {
           conceptId: prerequisiteId,

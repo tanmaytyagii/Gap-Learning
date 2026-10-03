@@ -1,8 +1,10 @@
-export { AdaptiveAssessmentEngine, adaptiveAssessmentEngine } from './AdaptiveAssessmentEngine';
-export { QuestionEngine } from './engines/QuestionEngine';
-export { GapAnalysisEngine } from './engines/GapAnalysisEngine';
-export { FeedbackEngine } from './engines/FeedbackEngine';
+export { AdaptiveAssessmentEngine, type EngineContent, type SessionSubmission } from './AdaptiveAssessmentEngine';
+export { KnowledgeGraph } from './KnowledgeGraph';
+export { QuestionEngine, type RandomSource } from './engines/QuestionEngine';
+export {
+  GapAnalysisEngine, DIFFICULTY_WEIGHT, confidenceFromAttempts, toMasteryLevel,
+} from './engines/GapAnalysisEngine';
+export { FeedbackEngine, normalizeAnswer, type MisconceptionLookup } from './engines/FeedbackEngine';
 export { RecommendationEngine } from './engines/RecommendationEngine';
 export { ReportGenerator } from './engines/ReportGenerator';
-export { KNOWLEDGE_GRAPH, SUBJECT_CONCEPTS, getConcept, getSuccessors } from './data/knowledgeGraph';
-export type * from './models';
+export * from './models';

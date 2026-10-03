@@ -22,3 +22,14 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Environment and runtime data
+.env
+.env.*
+!.env.example
+server/data/
+coverage
+
+# Playwright
+test-results/
+playwright-report/

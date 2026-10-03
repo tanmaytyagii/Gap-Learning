@@ -1,55 +1,34 @@
-import { motion } from 'framer-motion';
+import type { HTMLAttributes, ReactNode } from 'react';
 import { cn } from '../../utils/cn';
 
-interface CardProps {
-  children: React.ReactNode;
+export function Card({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
+  return <div className={cn('min-w-0 rounded-xl border border-border bg-surface shadow-card', className)} {...props} />;
+}
+
+interface CardHeaderProps {
+  title: ReactNode;
+  description?: ReactNode;
+  action?: ReactNode;
+  icon?: ReactNode;
   className?: string;
-  hover?: boolean;
-  glow?: 'primary' | 'success' | 'warning' | 'none';
-  padding?: 'none' | 'sm' | 'md' | 'lg';
+  as?: 'h2' | 'h3';
 }
 
-const glowStyles = {
-  primary: 'shadow-[0_0_30px_rgba(79,70,229,0.15)] border-primary/30',
-  success: 'shadow-[0_0_30px_rgba(16,185,129,0.15)] border-success/30',
-  warning: 'shadow-[0_0_30px_rgba(245,158,11,0.15)] border-warning/30',
-  none: '',
-};
-
-const paddingStyles = {
-  none: '',
-  sm: 'p-4',
-  md: 'p-6',
-  lg: 'p-8',
-};
-
-export function Card({ children, className, hover = false, glow = 'none', padding = 'none' }: CardProps) {
+export function CardHeader({ title, description, action, icon, className, as: Heading = 'h2' }: CardHeaderProps) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 12 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, ease: 'easeOut' }}
-      whileHover={hover ? { y: -2, transition: { duration: 0.2 } } : undefined}
-      className={cn(
-        'glass-card rounded-2xl overflow-hidden',
-        glowStyles[glow],
-        paddingStyles[padding],
-        className
-      )}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-export function CardHeader({ children, className }: { children: React.ReactNode; className?: string }) {
-  return (
-    <div className={cn('px-6 py-5 border-b border-white/8 flex items-center justify-between', className)}>
-      {children}
+    <div className={cn('flex items-start justify-between gap-4 px-5 pt-5', className)}>
+      <div className="flex min-w-0 items-start gap-3">
+        {icon && <div className="mt-0.5 text-fg-3">{icon}</div>}
+        <div className="min-w-0">
+          <Heading className="text-[15px] font-semibold leading-6 text-fg">{title}</Heading>
+          {description && <p className="mt-0.5 text-[13px] leading-5 text-fg-3">{description}</p>}
+        </div>
+      </div>
+      {action && <div className="flex shrink-0 items-center gap-2">{action}</div>}
     </div>
   );
 }
 
-export function CardBody({ children, className }: { children: React.ReactNode; className?: string }) {
-  return <div className={cn('p-6', className)}>{children}</div>;
+export function CardBody({ className, ...props }: HTMLAttributes<HTMLDivElement>) {
+  return <div className={cn('p-5', className)} {...props} />;
 }

@@ -1,0 +1,1384 @@
+[
+  {
+    "id": "frac-basic-e1",
+    "concept": "frac_visual",
+    "difficulty": "easy",
+    "learningObjective": "Identify numerator and denominator in a part-whole model.",
+    "question": "A pizza has 8 equal slices and 3 are eaten. What fraction remains?",
+    "options": [
+      "3/8",
+      "5/8",
+      "5/3",
+      "5"
+    ],
+    "correctAnswer": "5/8",
+    "hint": "Subtract the eaten slices from all 8 slices.",
+    "solutionSteps": "There are 8 equal parts. 8 - 3 = 5 parts remain, so the fraction is 5/8.",
+    "misconceptionMap": {
+      "3/8": "answered_eaten_not_remaining",
+      "5/3": "numerator_denominator_reversal",
+      "5": "denominator_ignored"
+    }
+  },
+  {
+    "id": "frac-basic-e2",
+    "concept": "frac_visual",
+    "difficulty": "easy",
+    "learningObjective": "Interpret the denominator as the number of equal parts.",
+    "question": "A strip is divided into 6 equal parts. Two parts are shaded. Which fraction is shaded?",
+    "options": [
+      "2/6",
+      "4/6",
+      "6/2",
+      "2"
+    ],
+    "correctAnswer": "2/6",
+    "hint": "The denominator counts all equal parts; the numerator counts shaded parts.",
+    "solutionSteps": "There are 6 total equal parts and 2 shaded parts, giving 2/6.",
+    "misconceptionMap": {
+      "4/6": "answered_unshaded_not_shaded",
+      "6/2": "numerator_denominator_reversal",
+      "2": "denominator_ignored"
+    }
+  },
+  {
+    "id": "frac-basic-m1",
+    "concept": "frac_visual",
+    "difficulty": "medium",
+    "learningObjective": "Connect fractions to points on a number line.",
+    "question": "The interval from 0 to 1 is split into 4 equal spaces. What value is the third mark after 0?",
+    "options": [
+      "1/4",
+      "2/4",
+      "3/4",
+      "4/3"
+    ],
+    "correctAnswer": "3/4",
+    "hint": "Count equal fourths from zero.",
+    "solutionSteps": "Each step is 1/4. Three steps from zero is 3 × 1/4 = 3/4.",
+    "misconceptionMap": {
+      "1/4": "counted_partition_size_only",
+      "2/4": "number_line_counting_error",
+      "4/3": "numerator_denominator_reversal"
+    }
+  },
+  {
+    "id": "frac-basic-m2",
+    "concept": "frac_visual",
+    "difficulty": "medium",
+    "learningObjective": "Identify the fraction for the part a question asks about.",
+    "question": "A class has 12 students and 5 of them wear glasses. What fraction of the class does NOT wear glasses?",
+    "options": [
+      "7/12",
+      "5/12",
+      "12/7",
+      "7"
+    ],
+    "correctAnswer": "7/12",
+    "hint": "First work out how many students do not wear glasses.",
+    "solutionSteps": "12 − 5 = 7 students do not wear glasses. The whole class is 12 students, so the fraction is 7/12.",
+    "misconceptionMap": {
+      "5/12": "answered_eaten_not_remaining",
+      "12/7": "numerator_denominator_reversal",
+      "7": "denominator_ignored"
+    }
+  },
+  {
+    "id": "frac-basic-h1",
+    "concept": "frac_visual",
+    "difficulty": "hard",
+    "learningObjective": "Count equal parts in a two-dimensional partition.",
+    "question": "A rectangle is split into 3 equal columns, and each column is split into 4 equal rows. 5 of the small boxes are shaded. What fraction is shaded?",
+    "options": [
+      "5/12",
+      "5/7",
+      "7/12",
+      "12/5"
+    ],
+    "correctAnswer": "5/12",
+    "hint": "How many small boxes are there in total? Multiply, do not add.",
+    "solutionSteps": "There are 3 × 4 = 12 equal boxes. 5 are shaded, so 5/12 of the rectangle is shaded.",
+    "misconceptionMap": {
+      "5/7": "partition_count_error",
+      "7/12": "answered_unshaded_not_shaded",
+      "12/5": "numerator_denominator_reversal"
+    }
+  },
+  {
+    "id": "frac-basic-h2",
+    "concept": "frac_visual",
+    "difficulty": "hard",
+    "learningObjective": "Locate a fraction greater than one on a number line.",
+    "question": "A number line runs from 0 to 2. Each whole is divided into 3 equal parts. Point P is at the 5th mark after 0. What number is P?",
+    "options": [
+      "5/3",
+      "5/6",
+      "3/5",
+      "2/3"
+    ],
+    "correctAnswer": "5/3",
+    "hint": "The whole is the distance from 0 to 1. How many equal parts does that distance have?",
+    "solutionSteps": "Each whole has 3 equal parts, so each step is 1/3. Five steps from 0 is 5 × 1/3 = 5/3 (that is, 1 and 2/3).",
+    "misconceptionMap": {
+      "5/6": "whole_unit_confusion",
+      "3/5": "numerator_denominator_reversal",
+      "2/3": "number_line_counting_error"
+    }
+  },
+  {
+    "id": "frac-equiv-e1",
+    "concept": "frac_equiv",
+    "difficulty": "easy",
+    "learningObjective": "Recognize a simple equivalent fraction.",
+    "question": "Which fraction is equivalent to 1/2?",
+    "options": [
+      "2/3",
+      "2/4",
+      "3/4",
+      "1/4"
+    ],
+    "correctAnswer": "2/4",
+    "hint": "Multiply the numerator and denominator by the same number.",
+    "solutionSteps": "Multiply both parts of 1/2 by 2: 1 × 2 over 2 × 2 equals 2/4.",
+    "misconceptionMap": {
+      "2/3": "additive_scaling_error",
+      "3/4": "unequal_scaling",
+      "1/4": "denominator_only_scaling"
+    }
+  },
+  {
+    "id": "frac-equiv-e2",
+    "concept": "frac_equiv",
+    "difficulty": "easy",
+    "learningObjective": "Complete an equivalent fraction using equal scaling.",
+    "question": "Complete the equivalence: 3/5 = ?/10",
+    "options": [
+      "5",
+      "6",
+      "8",
+      "15"
+    ],
+    "correctAnswer": "6",
+    "hint": "The denominator doubled, so do the same to the numerator.",
+    "solutionSteps": "5 was multiplied by 2 to make 10. Multiply 3 by 2 as well, giving 6/10.",
+    "misconceptionMap": {
+      "5": "copied_denominator",
+      "8": "additive_scaling_error",
+      "15": "cross_multiply_confusion"
+    }
+  },
+  {
+    "id": "frac-equiv-m1",
+    "concept": "frac_equiv",
+    "difficulty": "medium",
+    "learningObjective": "Generate equivalent fractions with a missing value.",
+    "question": "Find the missing number: 4/6 = 10/?",
+    "options": [
+      "12",
+      "15",
+      "16",
+      "20"
+    ],
+    "correctAnswer": "15",
+    "hint": "4 became 10 by multiplying by 2.5; preserve the same ratio.",
+    "solutionSteps": "Use cross-products: 4 × ? = 6 × 10 = 60, so ? = 15.",
+    "misconceptionMap": {
+      "12": "additive_scaling_error",
+      "16": "unequal_scaling",
+      "20": "doubled_denominator"
+    }
+  },
+  {
+    "id": "frac-equiv-m2",
+    "concept": "frac_equiv",
+    "difficulty": "medium",
+    "learningObjective": "Find a missing term using a scale factor.",
+    "question": "Find the missing number: 5/8 = ?/40",
+    "options": [
+      "25",
+      "37",
+      "8",
+      "200"
+    ],
+    "correctAnswer": "25",
+    "hint": "What do you multiply 8 by to get 40?",
+    "solutionSteps": "8 × 5 = 40, so the scale factor is 5. Multiply the numerator by the same factor: 5 × 5 = 25. So 5/8 = 25/40.",
+    "misconceptionMap": {
+      "37": "additive_scaling_error",
+      "8": "copied_denominator",
+      "200": "cross_multiply_confusion"
+    }
+  },
+  {
+    "id": "frac-equiv-h1",
+    "concept": "frac_equiv",
+    "difficulty": "hard",
+    "learningObjective": "Simplify a fraction to lowest terms.",
+    "question": "Simplify 42/56 to lowest terms.",
+    "options": [
+      "3/4",
+      "6/8",
+      "21/28",
+      "4/3"
+    ],
+    "correctAnswer": "3/4",
+    "hint": "Divide both numbers by their greatest common factor, 14.",
+    "solutionSteps": "42 divided by 14 is 3 and 56 divided by 14 is 4, so the simplest form is 3/4.",
+    "misconceptionMap": {
+      "6/8": "incomplete_simplification",
+      "21/28": "incomplete_simplification",
+      "4/3": "numerator_denominator_reversal"
+    }
+  },
+  {
+    "id": "frac-equiv-h2",
+    "concept": "frac_equiv",
+    "difficulty": "hard",
+    "learningObjective": "Decide whether two fractions are equivalent by simplifying.",
+    "question": "Which pair of fractions are equivalent?",
+    "options": [
+      "4/6 and 6/9",
+      "3/5 and 5/7",
+      "2/3 and 4/9",
+      "5/6 and 6/5"
+    ],
+    "correctAnswer": "4/6 and 6/9",
+    "hint": "Simplify each fraction in a pair and compare the results.",
+    "solutionSteps": "4/6 simplifies to 2/3 (divide by 2) and 6/9 simplifies to 2/3 (divide by 3), so they are equivalent. Each other pair simplifies to two different values.",
+    "misconceptionMap": {
+      "3/5 and 5/7": "additive_scaling_error",
+      "2/3 and 4/9": "unequal_scaling",
+      "5/6 and 6/5": "numerator_denominator_reversal"
+    }
+  },
+  {
+    "id": "frac-compare-e1",
+    "concept": "frac_compare",
+    "difficulty": "easy",
+    "learningObjective": "Compare fractions with the same denominator.",
+    "question": "Which fraction is greater: 3/8 or 5/8?",
+    "options": [
+      "3/8",
+      "5/8",
+      "They are equal",
+      "Cannot tell"
+    ],
+    "correctAnswer": "5/8",
+    "hint": "The pieces are the same size, so compare how many pieces there are.",
+    "solutionSteps": "Both denominators are 8, so compare numerators. Since 5 is greater than 3, 5/8 is greater.",
+    "misconceptionMap": {
+      "3/8": "reversed_comparison",
+      "They are equal": "denominator_only_comparison",
+      "Cannot tell": "comparison_strategy_missing"
+    }
+  },
+  {
+    "id": "frac-compare-e2",
+    "concept": "frac_compare",
+    "difficulty": "easy",
+    "learningObjective": "Compare unit fractions.",
+    "question": "Which fraction is greater: 1/3 or 1/5?",
+    "options": [
+      "1/3",
+      "1/5",
+      "They are equal",
+      "Cannot tell"
+    ],
+    "correctAnswer": "1/3",
+    "hint": "Would you rather have one piece of a pizza cut into 3 or one piece of a pizza cut into 5?",
+    "solutionSteps": "Both fractions have one piece. Thirds are bigger pieces than fifths, so 1/3 is greater.",
+    "misconceptionMap": {
+      "1/5": "whole_number_comparison",
+      "They are equal": "denominator_ignored",
+      "Cannot tell": "comparison_strategy_missing"
+    }
+  },
+  {
+    "id": "frac-compare-m1",
+    "concept": "frac_compare",
+    "difficulty": "medium",
+    "learningObjective": "Compare unlike fractions with a common denominator.",
+    "question": "Which comparison is true?",
+    "options": [
+      "2/3 > 3/4",
+      "2/3 < 3/4",
+      "2/3 = 3/4",
+      "The fractions cannot be compared"
+    ],
+    "correctAnswer": "2/3 < 3/4",
+    "hint": "Rewrite both fractions in twelfths.",
+    "solutionSteps": "2/3 = 8/12 and 3/4 = 9/12. Therefore 2/3 is less than 3/4.",
+    "misconceptionMap": {
+      "2/3 > 3/4": "whole_number_comparison",
+      "2/3 = 3/4": "equivalence_confusion",
+      "The fractions cannot be compared": "comparison_strategy_missing"
+    }
+  },
+  {
+    "id": "frac-compare-m2",
+    "concept": "frac_compare",
+    "difficulty": "medium",
+    "learningObjective": "Compare a fraction with the benchmark 1/2.",
+    "question": "How does 5/8 compare with 1/2?",
+    "options": [
+      "5/8 is greater than 1/2",
+      "5/8 is less than 1/2",
+      "5/8 is equal to 1/2",
+      "They cannot be compared"
+    ],
+    "correctAnswer": "5/8 is greater than 1/2",
+    "hint": "Write 1/2 in eighths.",
+    "solutionSteps": "1/2 = 4/8. Since 5/8 has more eighths than 4/8, 5/8 is greater than 1/2.",
+    "misconceptionMap": {
+      "5/8 is less than 1/2": "whole_number_comparison",
+      "5/8 is equal to 1/2": "equivalence_confusion",
+      "They cannot be compared": "comparison_strategy_missing"
+    }
+  },
+  {
+    "id": "frac-compare-h1",
+    "concept": "frac_compare",
+    "difficulty": "hard",
+    "learningObjective": "Order unlike fractions using equivalent forms.",
+    "question": "Which list is ordered from least to greatest?",
+    "options": [
+      "2/5, 1/2, 3/4",
+      "1/2, 2/5, 3/4",
+      "3/4, 1/2, 2/5",
+      "2/5, 3/4, 1/2"
+    ],
+    "correctAnswer": "2/5, 1/2, 3/4",
+    "hint": "Use twentieths: 8/20, 10/20, and 15/20.",
+    "solutionSteps": "2/5 = 8/20, 1/2 = 10/20, and 3/4 = 15/20, so that is the increasing order.",
+    "misconceptionMap": {
+      "1/2, 2/5, 3/4": "whole_number_comparison",
+      "3/4, 1/2, 2/5": "reversed_order",
+      "2/5, 3/4, 1/2": "common_denominator_error"
+    }
+  },
+  {
+    "id": "frac-compare-h2",
+    "concept": "frac_compare",
+    "difficulty": "hard",
+    "learningObjective": "Compare fractions close to one using the missing piece.",
+    "question": "Which is greater: 7/8 or 8/9?",
+    "options": [
+      "8/9",
+      "7/8",
+      "They are equal",
+      "Cannot tell without a calculator"
+    ],
+    "correctAnswer": "8/9",
+    "hint": "How far is each fraction from 1 whole?",
+    "solutionSteps": "7/8 is 1/8 away from 1, and 8/9 is 1/9 away from 1. Since 1/9 is smaller than 1/8, 8/9 is closer to 1 and therefore greater. Check: 7/8 = 63/72 and 8/9 = 64/72.",
+    "misconceptionMap": {
+      "7/8": "denominator_only_comparison",
+      "They are equal": "equivalence_confusion",
+      "Cannot tell without a calculator": "comparison_strategy_missing"
+    }
+  },
+  {
+    "id": "frac-ops-e1",
+    "concept": "frac_operations",
+    "difficulty": "easy",
+    "learningObjective": "Add fractions with the same denominator.",
+    "question": "Solve 2/9 + 4/9.",
+    "options": [
+      "6/18",
+      "6/9",
+      "8/9",
+      "6/81"
+    ],
+    "correctAnswer": "6/9",
+    "hint": "Keep the shared denominator and add the numerators.",
+    "solutionSteps": "The parts are all ninths. Add 2 + 4 and keep denominator 9, giving 6/9.",
+    "misconceptionMap": {
+      "6/18": "direct_denom_addition",
+      "8/9": "operation_error",
+      "6/81": "multiplied_denominators"
+    }
+  },
+  {
+    "id": "frac-ops-e2",
+    "concept": "frac_operations",
+    "difficulty": "easy",
+    "learningObjective": "Subtract fractions with the same denominator.",
+    "question": "Solve 7/10 − 3/10.",
+    "options": [
+      "4/10",
+      "4/0",
+      "10/10",
+      "21/100"
+    ],
+    "correctAnswer": "4/10",
+    "hint": "The pieces are already the same size. Subtract the numerators only.",
+    "solutionSteps": "Both fractions are tenths. 7 − 3 = 4, and the denominator stays 10, so the answer is 4/10 (which simplifies to 2/5).",
+    "misconceptionMap": {
+      "4/0": "direct_denom_addition",
+      "10/10": "operation_error",
+      "21/100": "operation_error"
+    }
+  },
+  {
+    "id": "frac-ops-m1",
+    "concept": "frac_operations",
+    "difficulty": "medium",
+    "learningObjective": "Add fractions with unlike denominators.",
+    "question": "Solve 1/2 + 1/3.",
+    "options": [
+      "2/5",
+      "2/6",
+      "5/6",
+      "1/5"
+    ],
+    "correctAnswer": "5/6",
+    "hint": "Convert both fractions to sixths before adding.",
+    "solutionSteps": "1/2 = 3/6 and 1/3 = 2/6. Add to get 5/6.",
+    "misconceptionMap": {
+      "2/5": "direct_denom_addition",
+      "2/6": "numerator_only_addition",
+      "1/5": "operation_error"
+    }
+  },
+  {
+    "id": "frac-ops-m2",
+    "concept": "frac_operations",
+    "difficulty": "medium",
+    "learningObjective": "Add fractions with unlike denominators.",
+    "question": "Solve 2/3 + 1/4.",
+    "options": [
+      "11/12",
+      "3/7",
+      "3/12",
+      "2/12"
+    ],
+    "correctAnswer": "11/12",
+    "hint": "Rename both fractions as twelfths first.",
+    "solutionSteps": "2/3 = 8/12 and 1/4 = 3/12. Add the numerators: 8 + 3 = 11, giving 11/12.",
+    "misconceptionMap": {
+      "3/7": "direct_denom_addition",
+      "3/12": "numerator_only_addition",
+      "2/12": "operation_error"
+    }
+  },
+  {
+    "id": "frac-ops-h1",
+    "concept": "frac_operations",
+    "difficulty": "hard",
+    "learningObjective": "Multiply and simplify fractions.",
+    "question": "Solve and simplify 3/5 × 10/12.",
+    "options": [
+      "30/60",
+      "1/2",
+      "13/17",
+      "6/5"
+    ],
+    "correctAnswer": "1/2",
+    "hint": "Multiply across, then reduce the result completely.",
+    "solutionSteps": "3 × 10 over 5 × 12 is 30/60. Divide both by 30 to get 1/2.",
+    "misconceptionMap": {
+      "30/60": "incomplete_simplification",
+      "13/17": "added_instead_of_multiplied",
+      "6/5": "cross_multiply_confusion"
+    }
+  },
+  {
+    "id": "frac-ops-h2",
+    "concept": "frac_operations",
+    "difficulty": "hard",
+    "learningObjective": "Multiply fractions in context and simplify.",
+    "question": "A recipe needs 3/4 cup of sugar. You make 2/3 of the recipe. How much sugar do you need?",
+    "options": [
+      "1/2 cup",
+      "5/7 cup",
+      "6/12 cup",
+      "9/8 cup"
+    ],
+    "correctAnswer": "1/2 cup",
+    "hint": "\"2/3 of\" means multiply. Then simplify.",
+    "solutionSteps": "2/3 × 3/4 = 6/12. Divide the numerator and denominator by 6 to get 1/2 cup.",
+    "misconceptionMap": {
+      "5/7 cup": "added_instead_of_multiplied",
+      "6/12 cup": "incomplete_simplification",
+      "9/8 cup": "cross_multiply_confusion"
+    }
+  },
+  {
+    "id": "force-e1",
+    "concept": "sci_force",
+    "difficulty": "easy",
+    "learningObjective": "Identify balanced forces.",
+    "question": "A book rests on a table. Which statement is correct?",
+    "options": [
+      "No forces act",
+      "Gravity and the table push are equal",
+      "Only gravity acts",
+      "The upward force is larger"
+    ],
+    "correctAnswer": "Gravity and the table push are equal",
+    "hint": "The book has no acceleration.",
+    "solutionSteps": "A stationary book has zero net force. Gravity downward is balanced by the table's upward normal force.",
+    "misconceptionMap": {
+      "No forces act": "force_motion_link",
+      "Only gravity acts": "balanced_force_ignored",
+      "The upward force is larger": "net_force_confusion"
+    }
+  },
+  {
+    "id": "force-e2",
+    "concept": "sci_force",
+    "difficulty": "easy",
+    "learningObjective": "Identify the unit of force.",
+    "question": "Which unit is used to measure force?",
+    "options": [
+      "Newton (N)",
+      "Kilogram (kg)",
+      "Joule (J)",
+      "Meter per second (m/s)"
+    ],
+    "correctAnswer": "Newton (N)",
+    "hint": "The unit is named after the scientist who wrote the laws of motion.",
+    "solutionSteps": "Force is measured in newtons (N). Kilograms measure mass, joules measure energy, and meters per second measure speed.",
+    "misconceptionMap": {
+      "Kilogram (kg)": "mass_weight_equivalence",
+      "Joule (J)": "force_energy_confusion",
+      "Meter per second (m/s)": "force_energy_confusion"
+    }
+  },
+  {
+    "id": "force-m1",
+    "concept": "sci_force",
+    "difficulty": "medium",
+    "learningObjective": "Combine opposing forces into a net force.",
+    "question": "In a tug of war, Team A pulls left with 300 N and Team B pulls right with 250 N. What is the net force on the rope?",
+    "options": [
+      "50 N to the left",
+      "550 N to the left",
+      "50 N to the right",
+      "0 N, because both teams are pulling"
+    ],
+    "correctAnswer": "50 N to the left",
+    "hint": "The forces point in opposite directions.",
+    "solutionSteps": "Opposite forces subtract: 300 − 250 = 50 N. The larger force points left, so the net force is 50 N to the left.",
+    "misconceptionMap": {
+      "550 N to the left": "forces_added_not_combined",
+      "50 N to the right": "net_force_direction_error",
+      "0 N, because both teams are pulling": "net_force_confusion"
+    }
+  },
+  {
+    "id": "force-m2",
+    "concept": "sci_force",
+    "difficulty": "medium",
+    "learningObjective": "Recognize balanced forces on a stationary object.",
+    "question": "You push a heavy box with 20 N and it does not move. What is the friction force on the box?",
+    "options": [
+      "20 N, opposite to your push",
+      "0 N, because the box is not moving",
+      "Less than 20 N",
+      "More than 20 N"
+    ],
+    "correctAnswer": "20 N, opposite to your push",
+    "hint": "The box is not accelerating. What does that say about the forces on it?",
+    "solutionSteps": "The box stays at rest, so the net force is zero. Friction must exactly balance your push: 20 N in the opposite direction.",
+    "misconceptionMap": {
+      "0 N, because the box is not moving": "force_motion_link",
+      "Less than 20 N": "net_force_confusion",
+      "More than 20 N": "net_force_confusion"
+    }
+  },
+  {
+    "id": "force-h1",
+    "concept": "sci_force",
+    "difficulty": "hard",
+    "learningObjective": "Identify the forces on a projectile after release.",
+    "question": "A ball is thrown straight up. At the very top of its path, which force acts on it? (Ignore air resistance.)",
+    "options": [
+      "Only gravity, pulling down",
+      "No forces, because it is momentarily at rest",
+      "Gravity down and the force of the throw up",
+      "An upward force equal to gravity"
+    ],
+    "correctAnswer": "Only gravity, pulling down",
+    "hint": "Once the ball leaves your hand, what is still touching it or pulling on it?",
+    "solutionSteps": "After release, nothing is pushing the ball upward. Gravity is the only force, at every point of the flight, including the top where the ball is briefly still.",
+    "misconceptionMap": {
+      "No forces, because it is momentarily at rest": "force_motion_link",
+      "Gravity down and the force of the throw up": "impetus_misconception",
+      "An upward force equal to gravity": "net_force_confusion"
+    }
+  },
+  {
+    "id": "force-h2",
+    "concept": "sci_force",
+    "difficulty": "hard",
+    "learningObjective": "Predict motion when forces are balanced.",
+    "question": "A car's engine pushes it forward with 4,000 N, and friction plus air resistance total 4,000 N backward. What happens to the car?",
+    "options": [
+      "It keeps moving at a constant velocity",
+      "It slows down and stops",
+      "It speeds up",
+      "It must be at rest"
+    ],
+    "correctAnswer": "It keeps moving at a constant velocity",
+    "hint": "What is the net force, and what does a zero net force do to velocity?",
+    "solutionSteps": "The forces balance, so the net force is 0 N and there is no acceleration. A moving car therefore keeps moving at a constant velocity.",
+    "misconceptionMap": {
+      "It slows down and stops": "force_motion_link",
+      "It speeds up": "balanced_force_ignored",
+      "It must be at rest": "force_motion_link"
+    }
+  },
+  {
+    "id": "gravity-e1",
+    "concept": "sci_gravity",
+    "difficulty": "easy",
+    "learningObjective": "Identify the quantity measured in kilograms.",
+    "question": "Which quantity is measured in kilograms?",
+    "options": [
+      "Mass",
+      "Weight",
+      "Force",
+      "Acceleration"
+    ],
+    "correctAnswer": "Mass",
+    "hint": "Weight is a force.",
+    "solutionSteps": "Mass is measured in kilograms. Weight is a force and, like all forces, is measured in newtons.",
+    "misconceptionMap": {
+      "Weight": "mass_weight_equivalence",
+      "Force": "mass_weight_equivalence"
+    }
+  },
+  {
+    "id": "gravity-e2",
+    "concept": "sci_gravity",
+    "difficulty": "easy",
+    "learningObjective": "Calculate weight from mass using W = mg.",
+    "question": "A 2 kg bag of rice sits on a shelf. What is its weight on Earth? (Use g ≈ 10 N/kg.)",
+    "options": [
+      "20 N",
+      "2 kg",
+      "2 N",
+      "0.2 N"
+    ],
+    "correctAnswer": "20 N",
+    "hint": "Weight = mass × g.",
+    "solutionSteps": "W = m × g = 2 kg × 10 N/kg = 20 N.",
+    "misconceptionMap": {
+      "2 kg": "mass_weight_equivalence",
+      "2 N": "gravity_effect_ignored",
+      "0.2 N": "weight_formula_error"
+    }
+  },
+  {
+    "id": "gravity-m1",
+    "concept": "sci_gravity",
+    "difficulty": "medium",
+    "learningObjective": "Distinguish mass and weight.",
+    "question": "An astronaut goes from Earth to the Moon. What changes?",
+    "options": [
+      "Mass and weight decrease",
+      "Mass stays; weight decreases",
+      "Weight stays; mass decreases",
+      "Neither changes"
+    ],
+    "correctAnswer": "Mass stays; weight decreases",
+    "hint": "Weight depends on gravity; mass is matter.",
+    "solutionSteps": "The astronaut has the same matter, so mass stays fixed. Weaker lunar gravity reduces weight.",
+    "misconceptionMap": {
+      "Mass and weight decrease": "mass_weight_equivalence",
+      "Weight stays; mass decreases": "mass_weight_reversal",
+      "Neither changes": "gravity_effect_ignored"
+    }
+  },
+  {
+    "id": "gravity-m2",
+    "concept": "sci_gravity",
+    "difficulty": "medium",
+    "learningObjective": "Explain free fall without air resistance.",
+    "question": "A hammer and a feather are dropped at the same moment on the Moon, where there is no air. Which lands first?",
+    "options": [
+      "They land at the same time",
+      "The hammer, because it is heavier",
+      "The feather, because it is lighter",
+      "Neither falls, because there is no gravity on the Moon"
+    ],
+    "correctAnswer": "They land at the same time",
+    "hint": "Without air resistance, what is the acceleration of any falling object?",
+    "solutionSteps": "With no air resistance, every object falls with the same acceleration, g. The hammer feels more gravitational force but has more mass, so a = F/m is the same for both.",
+    "misconceptionMap": {
+      "The hammer, because it is heavier": "heavier_falls_faster",
+      "Neither falls, because there is no gravity on the Moon": "no_gravity_in_space"
+    }
+  },
+  {
+    "id": "gravity-h1",
+    "concept": "sci_gravity",
+    "difficulty": "hard",
+    "learningObjective": "Apply W = mg in two gravitational fields.",
+    "question": "An object weighs 60 N on Earth (g ≈ 10 N/kg). The Moon's gravity is about 1/6 of Earth's. What are its mass and weight on the Moon?",
+    "options": [
+      "Mass 6 kg, weight 10 N",
+      "Mass 1 kg, weight 10 N",
+      "Mass 6 kg, weight 60 N",
+      "Mass 60 kg, weight 10 N"
+    ],
+    "correctAnswer": "Mass 6 kg, weight 10 N",
+    "hint": "Find the mass on Earth first: m = W ÷ g.",
+    "solutionSteps": "Mass = 60 N ÷ 10 N/kg = 6 kg, and mass does not change on the Moon. Weight on the Moon = 60 N ÷ 6 = 10 N.",
+    "misconceptionMap": {
+      "Mass 1 kg, weight 10 N": "mass_weight_equivalence",
+      "Mass 6 kg, weight 60 N": "gravity_effect_ignored",
+      "Mass 60 kg, weight 10 N": "weight_formula_error"
+    }
+  },
+  {
+    "id": "gravity-h2",
+    "concept": "sci_gravity",
+    "difficulty": "hard",
+    "learningObjective": "Explain apparent weightlessness in orbit.",
+    "question": "Astronauts on the International Space Station float inside it. Why?",
+    "options": [
+      "They are in continuous free fall together with the station",
+      "There is no gravity in space",
+      "The station's engines cancel gravity",
+      "Their mass becomes zero in orbit"
+    ],
+    "correctAnswer": "They are in continuous free fall together with the station",
+    "hint": "Gravity at the station is still about 90% of its value on Earth's surface.",
+    "solutionSteps": "Gravity still pulls strongly on the station and the astronauts. They are all falling around Earth at the same rate, so the astronauts do not press against the floor and appear to float.",
+    "misconceptionMap": {
+      "There is no gravity in space": "no_gravity_in_space",
+      "The station's engines cancel gravity": "net_force_confusion",
+      "Their mass becomes zero in orbit": "mass_weight_equivalence"
+    }
+  },
+  {
+    "id": "netforce-e1",
+    "concept": "sci_net_force",
+    "difficulty": "easy",
+    "learningObjective": "Apply Newton's second law to find acceleration.",
+    "question": "A 2 kg cart has a net force of 10 N acting on it. What is its acceleration?",
+    "options": [
+      "5 m/s²",
+      "20 m/s²",
+      "0.2 m/s²",
+      "10 m/s²"
+    ],
+    "correctAnswer": "5 m/s²",
+    "hint": "Rearrange F = ma to find a.",
+    "solutionSteps": "a = F ÷ m = 10 N ÷ 2 kg = 5 m/s².",
+    "misconceptionMap": {
+      "20 m/s²": "newton_second_law_error",
+      "0.2 m/s²": "newton_second_law_error",
+      "10 m/s²": "newton_second_law_error"
+    }
+  },
+  {
+    "id": "netforce-e2",
+    "concept": "sci_net_force",
+    "difficulty": "easy",
+    "learningObjective": "Identify a situation with zero net force.",
+    "question": "Which situation has a net force of zero?",
+    "options": [
+      "A book resting on a desk",
+      "A car speeding up from a traffic light",
+      "An apple falling from a tree",
+      "A bike turning a corner at a steady speed"
+    ],
+    "correctAnswer": "A book resting on a desk",
+    "hint": "Zero net force means the velocity is not changing at all: not its speed and not its direction.",
+    "solutionSteps": "The book's velocity is not changing, so the forces on it balance. The car is speeding up, the apple is accelerating downward, and the bike is changing direction, so each of those has a net force.",
+    "misconceptionMap": {
+      "A car speeding up from a traffic light": "net_force_confusion",
+      "An apple falling from a tree": "gravity_effect_ignored",
+      "A bike turning a corner at a steady speed": "direction_change_ignored"
+    }
+  },
+  {
+    "id": "netforce-m1",
+    "concept": "sci_net_force",
+    "difficulty": "medium",
+    "learningObjective": "Relate constant velocity to zero net force.",
+    "question": "If a car is moving at a constant speed of 60 mph on a straight highway, what is the net force acting on the car?",
+    "options": [
+      "Greater than zero",
+      "Less than zero",
+      "Zero",
+      "Depends on the car's weight"
+    ],
+    "correctAnswer": "Zero",
+    "hint": "Constant speed in a straight line means there is no acceleration.",
+    "solutionSteps": "Constant velocity means a = 0, so F_net = m × a = 0. The engine's forward push is exactly balanced by friction and air resistance.",
+    "misconceptionMap": {
+      "Greater than zero": "force_motion_link",
+      "Less than zero": "net_force_confusion"
+    }
+  },
+  {
+    "id": "netforce-m2",
+    "concept": "sci_net_force",
+    "difficulty": "medium",
+    "learningObjective": "Relate mass to acceleration for a fixed force.",
+    "question": "The same net force is applied to a 1 kg ball and a 4 kg ball. How do their accelerations compare?",
+    "options": [
+      "The 1 kg ball accelerates 4 times as much",
+      "They accelerate equally",
+      "The 4 kg ball accelerates 4 times as much",
+      "The 1 kg ball accelerates 2 times as much"
+    ],
+    "correctAnswer": "The 1 kg ball accelerates 4 times as much",
+    "hint": "a = F ÷ m. What happens to a when m is four times larger?",
+    "solutionSteps": "With the same force, acceleration is inversely proportional to mass. The 4 kg ball has four times the mass, so it has one-quarter of the acceleration.",
+    "misconceptionMap": {
+      "They accelerate equally": "newton_second_law_error",
+      "The 4 kg ball accelerates 4 times as much": "newton_second_law_error",
+      "The 1 kg ball accelerates 2 times as much": "newton_second_law_error"
+    }
+  },
+  {
+    "id": "netforce-h1",
+    "concept": "sci_net_force",
+    "difficulty": "hard",
+    "learningObjective": "Relate constant velocity to net force.",
+    "question": "A spacecraft coasts at constant velocity in deep space. What is its net force?",
+    "options": [
+      "0 N",
+      "Equal to its speed",
+      "A constant forward force",
+      "An increasing force"
+    ],
+    "correctAnswer": "0 N",
+    "hint": "Constant velocity means zero acceleration.",
+    "solutionSteps": "With acceleration equal to zero, F = ma gives a net force of 0 N.",
+    "misconceptionMap": {
+      "Equal to its speed": "force_motion_link",
+      "A constant forward force": "force_motion_link",
+      "An increasing force": "force_motion_link"
+    }
+  },
+  {
+    "id": "netforce-h2",
+    "concept": "sci_net_force",
+    "difficulty": "hard",
+    "learningObjective": "Explain terminal velocity using balanced forces.",
+    "question": "A skydiver reaches terminal velocity. Which statement is true?",
+    "options": [
+      "Air resistance equals her weight, so she falls at a constant speed",
+      "Her weight is still greater than air resistance, so she keeps speeding up slowly",
+      "Air resistance is greater than her weight",
+      "Gravity stops acting at terminal velocity"
+    ],
+    "correctAnswer": "Air resistance equals her weight, so she falls at a constant speed",
+    "hint": "Terminal velocity is a constant velocity. What must the net force be?",
+    "solutionSteps": "At terminal velocity the speed stops changing, so the net force is zero: upward air resistance exactly balances her downward weight.",
+    "misconceptionMap": {
+      "Her weight is still greater than air resistance, so she keeps speeding up slowly": "force_motion_link",
+      "Air resistance is greater than her weight": "net_force_confusion",
+      "Gravity stops acting at terminal velocity": "gravity_effect_ignored"
+    }
+  },
+  {
+    "id": "reaction-e1",
+    "concept": "sci_action_reaction",
+    "difficulty": "easy",
+    "learningObjective": "State that interaction forces are equal in size.",
+    "question": "You push against a wall with a force of 50 N. How hard does the wall push back on you?",
+    "options": [
+      "50 N",
+      "0 N, because walls cannot push",
+      "Less than 50 N",
+      "More than 50 N"
+    ],
+    "correctAnswer": "50 N",
+    "hint": "Use Newton's third law.",
+    "solutionSteps": "Your push on the wall and the wall's push on you are an interaction pair, so they are equal in size: 50 N, in the opposite direction.",
+    "misconceptionMap": {
+      "0 N, because walls cannot push": "action_reaction_missing",
+      "Less than 50 N": "unequal_pair_forces",
+      "More than 50 N": "unequal_pair_forces"
+    }
+  },
+  {
+    "id": "reaction-e2",
+    "concept": "sci_action_reaction",
+    "difficulty": "easy",
+    "learningObjective": "Identify the reaction force that propels motion.",
+    "question": "A swimmer pushes water backward with their hands. What pushes the swimmer forward?",
+    "options": [
+      "The water pushes the swimmer forward",
+      "The swimmer's muscles push the swimmer forward",
+      "Nothing; the swimmer's momentum carries them",
+      "Gravity pulls the swimmer forward"
+    ],
+    "correctAnswer": "The water pushes the swimmer forward",
+    "hint": "For every push on the water, there is an equal and opposite push on the swimmer.",
+    "solutionSteps": "The swimmer pushes the water backward, so the water pushes the swimmer forward with an equal force (Newton's third law).",
+    "misconceptionMap": {
+      "The swimmer's muscles push the swimmer forward": "action_reaction_missing",
+      "Nothing; the swimmer's momentum carries them": "impetus_misconception"
+    }
+  },
+  {
+    "id": "reaction-m1",
+    "concept": "sci_action_reaction",
+    "difficulty": "medium",
+    "learningObjective": "Identify the correct third-law partner of a force.",
+    "question": "Earth pulls a book downward (the book's weight). What is the reaction force to this pull?",
+    "options": [
+      "The book pulls Earth upward",
+      "The table pushes the book upward",
+      "There is no reaction force to gravity",
+      "The book pushes the table downward"
+    ],
+    "correctAnswer": "The book pulls Earth upward",
+    "hint": "Swap the two objects: \"Earth on book\" becomes \"book on …\".",
+    "solutionSteps": "Third-law pairs act on two different objects and are the same type of force. Earth pulls the book down by gravity, so the book pulls Earth up by gravity. The table's push is a separate force that balances the weight on the book.",
+    "misconceptionMap": {
+      "The table pushes the book upward": "pair_on_same_object",
+      "There is no reaction force to gravity": "action_reaction_missing",
+      "The book pushes the table downward": "pair_on_same_object"
+    }
+  },
+  {
+    "id": "reaction-m2",
+    "concept": "sci_action_reaction",
+    "difficulty": "medium",
+    "learningObjective": "Separate equal forces from unequal accelerations.",
+    "question": "When a rifle fires, why does the bullet speed away much faster than the rifle recoils?",
+    "options": [
+      "The forces are equal, but the bullet has much less mass",
+      "The rifle pushes the bullet harder than the bullet pushes the rifle",
+      "The bullet has more force because it moves faster",
+      "The rifle does not feel any force"
+    ],
+    "correctAnswer": "The forces are equal, but the bullet has much less mass",
+    "hint": "Compare the forces first, then use a = F ÷ m.",
+    "solutionSteps": "The rifle and bullet push on each other with equal forces. Because the bullet's mass is tiny, the same force gives it a huge acceleration, while the heavy rifle accelerates only a little.",
+    "misconceptionMap": {
+      "The rifle pushes the bullet harder than the bullet pushes the rifle": "mass_dominant_collision",
+      "The bullet has more force because it moves faster": "force_motion_link",
+      "The rifle does not feel any force": "action_reaction_missing"
+    }
+  },
+  {
+    "id": "reaction-h1",
+    "concept": "sci_action_reaction",
+    "difficulty": "hard",
+    "learningObjective": "Identify action-reaction force pairs.",
+    "question": "A truck hits a small car. Compare their forces on each other during impact.",
+    "options": [
+      "Truck exerts more",
+      "Car exerts more",
+      "Forces are equal in magnitude",
+      "No force pair exists"
+    ],
+    "correctAnswer": "Forces are equal in magnitude",
+    "hint": "Use Newton's third law.",
+    "solutionSteps": "Interaction forces form an equal-magnitude, opposite-direction pair regardless of the objects' masses.",
+    "misconceptionMap": {
+      "Truck exerts more": "mass_dominant_collision",
+      "Car exerts more": "mass_dominant_collision",
+      "No force pair exists": "action_reaction_missing"
+    }
+  },
+  {
+    "id": "reaction-h2",
+    "concept": "sci_action_reaction",
+    "difficulty": "hard",
+    "learningObjective": "Resolve the horse-and-cart paradox.",
+    "question": "A horse pulls a cart, and the cart pulls back on the horse with an equal force. How can they move forward?",
+    "options": [
+      "The forces act on different objects; the ground pushes the horse forward harder than the cart pulls back",
+      "They can't; equal forces cancel, so moving forward is impossible",
+      "The horse's pull is slightly bigger than the cart's pull",
+      "The cart's pull disappears once they start moving"
+    ],
+    "correctAnswer": "The forces act on different objects; the ground pushes the horse forward harder than the cart pulls back",
+    "hint": "To decide whether the horse accelerates, look only at the forces acting on the horse.",
+    "solutionSteps": "The horse–cart forces are a third-law pair acting on different objects, so they do not cancel. The horse pushes backward on the ground, the ground pushes the horse forward, and when that exceeds the cart's pull the horse (and cart) accelerate.",
+    "misconceptionMap": {
+      "They can't; equal forces cancel, so moving forward is impossible": "pair_on_same_object",
+      "The horse's pull is slightly bigger than the cart's pull": "unequal_pair_forces",
+      "The cart's pull disappears once they start moving": "action_reaction_missing"
+    }
+  },
+  {
+    "id": "present-e1",
+    "concept": "eng_present",
+    "difficulty": "easy",
+    "learningObjective": "Choose present progressive for an action happening now.",
+    "question": "Be quiet! The baby ____ right now.",
+    "options": [
+      "sleeps",
+      "is sleeping",
+      "slept",
+      "has slept"
+    ],
+    "correctAnswer": "is sleeping",
+    "hint": "Right now signals an action in progress.",
+    "solutionSteps": "An action happening now takes present progressive: is plus sleeping.",
+    "misconceptionMap": {
+      "sleeps": "past_habit_confusion",
+      "slept": "time_marker_ignored",
+      "has slept": "perfect_progressive_confusion"
+    }
+  },
+  {
+    "id": "present-e2",
+    "concept": "eng_present",
+    "difficulty": "easy",
+    "learningObjective": "Use the simple present for a routine.",
+    "question": "My sister ____ to school every day.",
+    "options": [
+      "walks",
+      "is walking",
+      "walk",
+      "walked"
+    ],
+    "correctAnswer": "walks",
+    "hint": "\"Every day\" signals a routine. Check the subject too.",
+    "solutionSteps": "\"Every day\" describes a habit, so use the simple present. The subject \"my sister\" is he/she/it, so the verb takes -s: walks.",
+    "misconceptionMap": {
+      "is walking": "past_habit_confusion",
+      "walk": "subject_verb_agreement",
+      "walked": "time_marker_ignored"
+    }
+  },
+  {
+    "id": "present-m1",
+    "concept": "eng_present",
+    "difficulty": "medium",
+    "learningObjective": "Use the simple present for a general truth.",
+    "question": "Water ____ at 100 °C at sea level.",
+    "options": [
+      "boils",
+      "is boiling",
+      "boil",
+      "boiled"
+    ],
+    "correctAnswer": "boils",
+    "hint": "Is this a fact that is always true, or something happening right now?",
+    "solutionSteps": "General truths and scientific facts take the simple present. \"Water\" is singular, so: boils.",
+    "misconceptionMap": {
+      "is boiling": "past_habit_confusion",
+      "boil": "subject_verb_agreement",
+      "boiled": "time_marker_ignored"
+    }
+  },
+  {
+    "id": "present-m2",
+    "concept": "eng_present",
+    "difficulty": "medium",
+    "learningObjective": "Use the present progressive for an action happening now.",
+    "question": "Look! It ____ outside. Take an umbrella.",
+    "options": [
+      "is raining",
+      "rains",
+      "was raining",
+      "is rain"
+    ],
+    "correctAnswer": "is raining",
+    "hint": "\"Look!\" points to something happening at this moment.",
+    "solutionSteps": "An action happening now takes am/is/are + -ing: is raining.",
+    "misconceptionMap": {
+      "rains": "past_habit_confusion",
+      "was raining": "time_marker_ignored",
+      "is rain": "auxiliary_form_error"
+    }
+  },
+  {
+    "id": "present-h1",
+    "concept": "eng_present",
+    "difficulty": "hard",
+    "learningObjective": "Keep stative verbs in the simple form.",
+    "question": "Which sentence uses the verb “know” correctly?",
+    "options": [
+      "I know the answer.",
+      "I am knowing the answer.",
+      "I knowing the answer.",
+      "I am know the answer."
+    ],
+    "correctAnswer": "I know the answer.",
+    "hint": "\"Know\" describes a state, not an action.",
+    "solutionSteps": "Stative verbs such as know, believe, and want are normally used in simple forms, so \"I know the answer\" is correct.",
+    "misconceptionMap": {
+      "I am knowing the answer.": "stative_progressive",
+      "I knowing the answer.": "auxiliary_form_error",
+      "I am know the answer.": "auxiliary_form_error"
+    }
+  },
+  {
+    "id": "present-h2",
+    "concept": "eng_present",
+    "difficulty": "hard",
+    "learningObjective": "Use the present progressive for a temporary situation.",
+    "question": "This week I ____ from home because the office is being renovated.",
+    "options": [
+      "am working",
+      "work",
+      "worked",
+      "have worked"
+    ],
+    "correctAnswer": "am working",
+    "hint": "\"This week\" describes a temporary arrangement around now.",
+    "solutionSteps": "Temporary situations happening around now take the present progressive: am working.",
+    "misconceptionMap": {
+      "work": "past_habit_confusion",
+      "worked": "time_marker_ignored",
+      "have worked": "perfect_progressive_confusion"
+    }
+  },
+  {
+    "id": "past-e1",
+    "concept": "eng_past",
+    "difficulty": "easy",
+    "learningObjective": "Use the simple past with a finished time.",
+    "question": "Yesterday, we ____ a movie at the cinema.",
+    "options": [
+      "watched",
+      "watch",
+      "have watched",
+      "watching"
+    ],
+    "correctAnswer": "watched",
+    "hint": "\"Yesterday\" is a finished time.",
+    "solutionSteps": "A completed action at a finished time takes the simple past: watched.",
+    "misconceptionMap": {
+      "watch": "time_marker_ignored",
+      "have watched": "perfect_simple_past_overlap",
+      "watching": "auxiliary_form_error"
+    }
+  },
+  {
+    "id": "past-e2",
+    "concept": "eng_past",
+    "difficulty": "easy",
+    "learningObjective": "Form the simple past of an irregular verb.",
+    "question": "She ____ her keys last night.",
+    "options": [
+      "lost",
+      "loses",
+      "has lost",
+      "losed"
+    ],
+    "correctAnswer": "lost",
+    "hint": "\"Lose\" is an irregular verb.",
+    "solutionSteps": "\"Last night\" is a finished time, so use the simple past. \"Lose\" is irregular: lose → lost.",
+    "misconceptionMap": {
+      "loses": "time_marker_ignored",
+      "has lost": "perfect_simple_past_overlap",
+      "losed": "irregular_past_error"
+    }
+  },
+  {
+    "id": "past-m1",
+    "concept": "eng_past",
+    "difficulty": "medium",
+    "learningObjective": "Use past continuous for an interrupted action.",
+    "question": "While I ____ dinner, the phone rang.",
+    "options": [
+      "cooked",
+      "was cooking",
+      "have cooked",
+      "cook"
+    ],
+    "correctAnswer": "was cooking",
+    "hint": "The cooking was already in progress.",
+    "solutionSteps": "The longer background action uses past continuous: was cooking. The interruption uses simple past: rang.",
+    "misconceptionMap": {
+      "cooked": "past_continuous_confusion",
+      "have cooked": "perfect_simple_past_overlap",
+      "cook": "tense_agreement_error"
+    }
+  },
+  {
+    "id": "past-m2",
+    "concept": "eng_past",
+    "difficulty": "medium",
+    "learningObjective": "Use the past continuous for an action in progress at a past moment.",
+    "question": "At 8 p.m. last night, I ____ TV, so I didn't hear the doorbell.",
+    "options": [
+      "was watching",
+      "watched",
+      "am watching",
+      "have watched"
+    ],
+    "correctAnswer": "was watching",
+    "hint": "What was in progress at exactly 8 p.m.?",
+    "solutionSteps": "An action in progress at a specific past moment takes the past continuous: was watching.",
+    "misconceptionMap": {
+      "watched": "past_continuous_confusion",
+      "am watching": "time_marker_ignored",
+      "have watched": "perfect_simple_past_overlap"
+    }
+  },
+  {
+    "id": "past-h1",
+    "concept": "eng_past",
+    "difficulty": "hard",
+    "learningObjective": "Combine the past continuous and simple past correctly.",
+    "question": "Which sentence uses tenses correctly?",
+    "options": [
+      "When the teacher arrived, the students were talking.",
+      "When the teacher was arriving, the students talked.",
+      "When the teacher arrived, the students talk.",
+      "When the teacher has arrived, the students were talking."
+    ],
+    "correctAnswer": "When the teacher arrived, the students were talking.",
+    "hint": "Which action was already in progress, and which one happened suddenly?",
+    "solutionSteps": "The talking was already in progress (past continuous: were talking) when the short event happened (simple past: arrived).",
+    "misconceptionMap": {
+      "When the teacher was arriving, the students talked.": "past_continuous_confusion",
+      "When the teacher arrived, the students talk.": "tense_agreement_error",
+      "When the teacher has arrived, the students were talking.": "perfect_simple_past_overlap"
+    }
+  },
+  {
+    "id": "past-h2",
+    "concept": "eng_past",
+    "difficulty": "hard",
+    "learningObjective": "Choose both verb forms in an interrupted-action sentence.",
+    "question": "I ____ (walk) home when I ____ (see) an old friend.",
+    "options": [
+      "was walking / saw",
+      "walked / was seeing",
+      "was walking / was seeing",
+      "walk / saw"
+    ],
+    "correctAnswer": "was walking / saw",
+    "hint": "The walk was the background; seeing the friend was the sudden event.",
+    "solutionSteps": "The background action takes the past continuous (was walking) and the interruption takes the simple past (saw).",
+    "misconceptionMap": {
+      "walked / was seeing": "past_continuous_confusion",
+      "was walking / was seeing": "past_continuous_confusion",
+      "walk / saw": "tense_agreement_error"
+    }
+  },
+  {
+    "id": "perfect-e1",
+    "concept": "eng_perfect",
+    "difficulty": "easy",
+    "learningObjective": "Use the present perfect for a result that matters now.",
+    "question": "I ____ my homework. Can I go out now?",
+    "options": [
+      "have finished",
+      "finish",
+      "finishing",
+      "had finished"
+    ],
+    "correctAnswer": "have finished",
+    "hint": "The finished homework matters now: it is why you are asking to go out.",
+    "solutionSteps": "A past action with a result that matters now takes the present perfect: have finished.",
+    "misconceptionMap": {
+      "finish": "time_marker_ignored",
+      "finishing": "auxiliary_form_error",
+      "had finished": "past_perfect_confusion"
+    }
+  },
+  {
+    "id": "perfect-e2",
+    "concept": "eng_perfect",
+    "difficulty": "easy",
+    "learningObjective": "Use the present perfect for life experience.",
+    "question": "She ____ to Paris three times.",
+    "options": [
+      "has been",
+      "have been",
+      "is",
+      "has went"
+    ],
+    "correctAnswer": "has been",
+    "hint": "This is about her experience up to now. Check the subject and the participle.",
+    "solutionSteps": "Life experience up to now takes the present perfect. \"She\" takes \"has\", and the past participle of \"be\" is \"been\": has been.",
+    "misconceptionMap": {
+      "have been": "subject_verb_agreement",
+      "is": "time_marker_ignored",
+      "has went": "irregular_past_error"
+    }
+  },
+  {
+    "id": "perfect-m1",
+    "concept": "eng_perfect",
+    "difficulty": "medium",
+    "learningObjective": "Use the simple past with a finished-time marker.",
+    "question": "I ____ him last Monday.",
+    "options": [
+      "saw",
+      "have seen",
+      "have saw",
+      "see"
+    ],
+    "correctAnswer": "saw",
+    "hint": "\"Last Monday\" is a finished time.",
+    "solutionSteps": "A finished-time expression rules out the present perfect, so use the simple past: saw.",
+    "misconceptionMap": {
+      "have seen": "perfect_simple_past_overlap",
+      "have saw": "irregular_past_error",
+      "see": "time_marker_ignored"
+    }
+  },
+  {
+    "id": "perfect-m2",
+    "concept": "eng_perfect",
+    "difficulty": "medium",
+    "learningObjective": "Use the present perfect with \"for\" and a continuing state.",
+    "question": "They ____ married for ten years, and they are still very happy.",
+    "options": [
+      "have been",
+      "were",
+      "are",
+      "had been"
+    ],
+    "correctAnswer": "have been",
+    "hint": "\"For ten years\" describes a period that continues up to now.",
+    "solutionSteps": "A state that started in the past and continues now takes the present perfect: have been.",
+    "misconceptionMap": {
+      "were": "perfect_simple_past_overlap",
+      "are": "since_marker_ignored",
+      "had been": "past_perfect_confusion"
+    }
+  },
+  {
+    "id": "perfect-h1",
+    "concept": "eng_perfect",
+    "difficulty": "hard",
+    "learningObjective": "Use present perfect for an action continuing to now.",
+    "question": "I ____ in Delhi since 2018, and I still live there.",
+    "options": [
+      "lived",
+      "have lived",
+      "had lived",
+      "am living"
+    ],
+    "correctAnswer": "have lived",
+    "hint": "The action began in the past and continues now.",
+    "solutionSteps": "Present perfect connects the past starting point to the present: have lived.",
+    "misconceptionMap": {
+      "lived": "perfect_simple_past_overlap",
+      "had lived": "past_perfect_confusion",
+      "am living": "since_marker_ignored"
+    }
+  },
+  {
+    "id": "perfect-h2",
+    "concept": "eng_perfect",
+    "difficulty": "hard",
+    "learningObjective": "Reject the present perfect with a finished time.",
+    "question": "Which sentence about losing a phone is correct?",
+    "options": [
+      "I lost my phone yesterday.",
+      "I have lost my phone yesterday.",
+      "I have losing my phone yesterday.",
+      "I had lost my phone yesterday."
+    ],
+    "correctAnswer": "I lost my phone yesterday.",
+    "hint": "Look at the time expression at the end of each sentence.",
+    "solutionSteps": "\"Yesterday\" is a finished time, so the simple past is required: I lost my phone yesterday.",
+    "misconceptionMap": {
+      "I have lost my phone yesterday.": "perfect_simple_past_overlap",
+      "I have losing my phone yesterday.": "auxiliary_form_error",
+      "I had lost my phone yesterday.": "past_perfect_confusion"
+    }
+  }
+]

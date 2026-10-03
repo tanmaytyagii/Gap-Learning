@@ -1,44 +1,53 @@
-import questionBankData from '../data/question-bank.json';
-import { getConcept } from '../data/knowledgeGraph';
+import type { KnowledgeGraph } from '../KnowledgeGraph';
 import type { Difficulty, Question } from '../models';
 
 const DIFFICULTY_RANK: Record<Difficulty, number> = { easy: 1, medium: 2, hard: 3 };
 
+export type RandomSource = () => number;
+
 export class QuestionEngine {
-  // Initialize with local bank as fallback
-  private questions: Question[] = questionBankData as unknown as Question[];
+  private readonly questions: Question[];
+  private readonly random: RandomSource;
 
-  setQuestions(dynamicQuestions: Question[]) {
-    if (dynamicQuestions && dynamicQuestions.length > 0) {
-      this.questions = dynamicQuestions;
-    }
-  }
-
-  getById(questionId: string): Question {
-    const question = this.questions.find((item) => item.id === questionId);
-    if (!question) throw new Error(`Unknown question: ${questionId}`);
-    return question;
-  }
-
-  getQuestion(conceptId: string, difficulty: Difficulty, excludedIds: string[]): Question {
-    const unseen = this.questions.filter((question) => !excludedIds.includes(question.id));
-    const conceptCandidates = unseen.filter((question) => question.concept === conceptId);
-    const subject = getConcept(conceptId).subject;
-    const subjectCandidates = unseen.filter((question) => getConcept(question.concept).subject === subject);
-    const candidates = conceptCandidates.length > 0 ? conceptCandidates : subjectCandidates;
-    const reusable = this.questions.filter((question) => question.concept === conceptId);
-    const pool = candidates.length > 0 ? candidates : reusable;
-
-    if (pool.length === 0) throw new Error(`No questions available for concept: ${conceptId}`);
-
-    return [...pool].sort((a, b) => {
-      const difficultyDelta = Math.abs(DIFFICULTY_RANK[a.difficulty] - DIFFICULTY_RANK[difficulty])
-        - Math.abs(DIFFICULTY_RANK[b.difficulty] - DIFFICULTY_RANK[difficulty]);
-      return difficultyDelta || a.id.localeCompare(b.id);
-    })[0];
+  constructor(questions: Question[], graph: KnowledgeGraph, random: RandomSource = Math.random) {
+    // Questions for concepts outside the graph are ignored so one bad record cannot break a session.
+    this.questions = questions.filter((question) => graph.has(question.concept));
+    this.random = random;
   }
 
   getAll(): Question[] {
     return [...this.questions];
+  }
+
+  countFor(conceptIds: string[]): number {
+    const scope = new Set(conceptIds);
+    return this.questions.filter((question) => scope.has(question.concept)).length;
+  }
+
+  /**
+   * Picks the unseen question for `conceptId` closest to the target difficulty. When that concept
+   * is exhausted the search can widen to related concepts, and as a last resort it re-asks the
+   * question that was asked longest ago instead of repeating the most recent one.
+   */
+  getQuestion(conceptId: string, difficulty: Difficulty, askedIds: string[], widenTo: string[] = []): Question | null {
+    const asked = new Set(askedIds);
+    const sameConcept = this.questions.filter((question) => question.concept === conceptId);
+
+    const unseenSame = sameConcept.filter((question) => !asked.has(question.id));
+    if (unseenSame.length > 0) return this.closestTo(unseenSame, difficulty);
+
+    const widenScope = new Set(widenTo);
+    const unseenWider = this.questions.filter((question) => widenScope.has(question.concept) && !asked.has(question.id));
+    if (unseenWider.length > 0) return this.closestTo(unseenWider, difficulty);
+
+    if (sameConcept.length === 0) return null;
+    return [...sameConcept].sort((a, b) => askedIds.lastIndexOf(a.id) - askedIds.lastIndexOf(b.id))[0];
+  }
+
+  private closestTo(pool: Question[], difficulty: Difficulty): Question {
+    const distance = (question: Question) => Math.abs(DIFFICULTY_RANK[question.difficulty] - DIFFICULTY_RANK[difficulty]);
+    const best = Math.min(...pool.map(distance));
+    const candidates = pool.filter((question) => distance(question) === best);
+    return candidates[Math.floor(this.random() * candidates.length)] ?? candidates[0];
   }
 }

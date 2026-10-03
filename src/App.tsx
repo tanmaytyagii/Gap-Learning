@@ -1,48 +1,74 @@
-import { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { LandingPage } from './pages/LandingPage';
-import { StudentPortal } from './pages/StudentPortal';
-import { TeacherPortal } from './pages/TeacherPortal';
-import { fetchQuestions } from './services/apiClient';
-import { adaptiveAssessmentEngine } from './adaptive';
+import type { ComponentType, ReactNode } from 'react';
+import { Navigate, RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { useContent } from './app/contexts';
+import { ContentProvider, StoreNotices, ThemeProvider, WorkspaceProvider } from './app/providers';
+import { AppShell } from './components/layout/AppShell';
+import { ConfirmProvider, ToastProvider } from './components/ui/feedback';
+import { PageSkeleton } from './components/layout/PageSkeleton';
+import { NotFoundPage, RouteError } from './pages/ErrorPages';
 
-function App() {
-  const [isLoading, setIsLoading] = useState(true);
+type PageModule = { default: ComponentType };
 
-  useEffect(() => {
-    const loadData = async () => {
-      try {
-        const questions = await fetchQuestions();
-        if (questions && questions.length > 0) {
-          adaptiveAssessmentEngine.getQuestionEngine().setQuestions(questions);
-        }
-      } catch (error) {
-        console.error("Failed to load questions from backend", error);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    loadData();
-  }, []);
+/** Route-level code splitting: each page (and heavy dependencies like charts) loads on demand. */
+const page = (load: () => Promise<PageModule>) => async () => ({ Component: (await load()).default });
 
-  if (isLoading) {
-    return (
-      <div className="min-h-screen bg-background flex flex-col items-center justify-center text-text-primary">
-        <div className="w-12 h-12 border-4 border-primary border-t-transparent rounded-full animate-spin mb-4"></div>
-        <h2 className="text-xl font-semibold">Connecting to GapLearning API...</h2>
-      </div>
-    );
-  }
+const router = createBrowserRouter([
+  {
+    path: '/',
+    lazy: page(() => import('./pages/LandingPage')),
+    errorElement: <RouteError fullPage />,
+    hydrateFallbackElement: <div className="min-h-dvh bg-bg" />,
+  },
+  {
+    path: '/app',
+    element: <AppShell />,
+    errorElement: <RouteError fullPage />,
+    hydrateFallbackElement: <AppShell><PageSkeleton /></AppShell>,
+    children: [
+      {
+        errorElement: <RouteError />,
+        children: [
+          { index: true, lazy: page(() => import('./pages/DashboardPage')) },
+          { path: 'gaps', lazy: page(() => import('./pages/GapsPage')) },
+          { path: 'topics', lazy: page(() => import('./pages/TopicsPage')) },
+          { path: 'topics/:conceptId', lazy: page(() => import('./pages/TopicDetailPage')) },
+          { path: 'roadmap', lazy: page(() => import('./pages/RoadmapPage')) },
+          { path: 'goals', lazy: page(() => import('./pages/GoalsPage')) },
+          { path: 'practice', lazy: page(() => import('./pages/PracticePage')) },
+          { path: 'practice/session', lazy: page(() => import('./pages/PracticeSessionPage')) },
+          { path: 'practice/sessions/:sessionId', lazy: page(() => import('./pages/SessionReportPage')) },
+          { path: 'analytics', lazy: page(() => import('./pages/AnalyticsPage')) },
+          { path: 'questions', lazy: page(() => import('./pages/QuestionBankPage')) },
+          { path: 'settings', lazy: page(() => import('./pages/SettingsPage')) },
+          { path: '*', element: <NotFoundPage inApp /> },
+        ],
+      },
+    ],
+  },
+  // Links from the previous version of the app keep working.
+  { path: '/student', element: <Navigate to="/app" replace /> },
+  { path: '/teacher', element: <Navigate to="/app/questions" replace /> },
+  { path: '*', element: <NotFoundPage /> },
+]);
 
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/student" element={<StudentPortal />} />
-        <Route path="/teacher" element={<TeacherPortal />} />
-      </Routes>
-    </BrowserRouter>
-  );
+function Workspace({ children }: { children: ReactNode }) {
+  const { serverQuestions } = useContent();
+  return <WorkspaceProvider serverQuestions={serverQuestions}>{children}</WorkspaceProvider>;
 }
 
-export default App;
+export default function App() {
+  return (
+    <ThemeProvider>
+      <ToastProvider>
+        <ConfirmProvider>
+          <ContentProvider>
+            <Workspace>
+              <StoreNotices />
+              <RouterProvider router={router} />
+            </Workspace>
+          </ContentProvider>
+        </ConfirmProvider>
+      </ToastProvider>
+    </ThemeProvider>
+  );
+}

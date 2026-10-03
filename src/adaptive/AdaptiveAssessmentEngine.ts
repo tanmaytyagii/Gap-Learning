@@ -1,63 +1,105 @@
-import { getConcept } from './data/knowledgeGraph';
-import { FeedbackEngine } from './engines/FeedbackEngine';
+import type { KnowledgeGraph } from './KnowledgeGraph';
+import { FeedbackEngine, type MisconceptionLookup } from './engines/FeedbackEngine';
 import { GapAnalysisEngine } from './engines/GapAnalysisEngine';
-import { QuestionEngine } from './engines/QuestionEngine';
+import { QuestionEngine, type RandomSource } from './engines/QuestionEngine';
 import { RecommendationEngine } from './engines/RecommendationEngine';
 import { ReportGenerator } from './engines/ReportGenerator';
-import type { AssessmentSession, Question, SubmissionResult } from './models';
+import type {
+  AssessmentReport, AssessmentSession, GapAnalysis, Question, SessionOptions, StudentResponse, SubmissionResult,
+} from './models';
 
-function createId(): string {
-  return `assessment-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+export interface EngineContent {
+  graph: KnowledgeGraph;
+  questions: Question[];
+  misconceptions: MisconceptionLookup;
+  random?: RandomSource;
 }
 
+export type SessionSubmission = SubmissionResult & { session: AssessmentSession };
+
+function createId(): string {
+  return `session-${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+}
+
+/**
+ * Facade over the question, gap-analysis, feedback, recommendation, and report engines.
+ * Sessions are plain serializable objects; every transition returns a new session.
+ */
 export class AdaptiveAssessmentEngine {
-  private readonly questionEngine = new QuestionEngine();
+  private readonly graph: KnowledgeGraph;
+  private readonly questionEngine: QuestionEngine;
+  private readonly gapAnalysisEngine: GapAnalysisEngine;
+  private readonly feedbackEngine: FeedbackEngine;
+  private readonly recommendationEngine: RecommendationEngine;
+  private readonly reportGenerator: ReportGenerator;
 
-  getQuestionEngine(): QuestionEngine {
-    return this.questionEngine;
+  constructor(content: EngineContent) {
+    this.graph = content.graph;
+    this.questionEngine = new QuestionEngine(content.questions, content.graph, content.random);
+    this.gapAnalysisEngine = new GapAnalysisEngine(content.graph);
+    this.feedbackEngine = new FeedbackEngine(content.graph, content.misconceptions);
+    this.recommendationEngine = new RecommendationEngine(this.questionEngine, content.graph);
+    this.reportGenerator = new ReportGenerator(this.feedbackEngine, content.graph);
   }
-  private readonly gapAnalysisEngine = new GapAnalysisEngine();
-  private readonly feedbackEngine = new FeedbackEngine();
-  private readonly recommendationEngine = new RecommendationEngine(this.questionEngine);
-  private readonly reportGenerator = new ReportGenerator(this.feedbackEngine);
 
-  createSession(startingConceptId: string, maxQuestions = 5): AssessmentSession {
-    if (!Number.isInteger(maxQuestions) || maxQuestions < 1) {
+  /** Number of distinct questions available to a session over these concepts. */
+  availableQuestions(conceptIds: string[]): number {
+    return this.questionEngine.countFor(conceptIds);
+  }
+
+  createSession(options: SessionOptions & { startConceptId?: string }): AssessmentSession {
+    const scope = options.conceptIds.filter((id) => this.graph.has(id));
+    const available = this.questionEngine.countFor(scope);
+    if (scope.length === 0 || available === 0) {
+      throw new Error('There are no questions for this selection yet.');
+    }
+    if (!Number.isInteger(options.maxQuestions) || options.maxQuestions < 1) {
       throw new Error('maxQuestions must be a positive integer');
     }
-    const concept = getConcept(startingConceptId);
-    const pendingRecommendation = this.recommendationEngine.recommendInitial(startingConceptId, []);
 
-    return {
+    const startingConceptId = options.startConceptId && scope.includes(options.startConceptId)
+      ? options.startConceptId
+      : scope.find((id) => this.questionEngine.countFor([id]) > 0)!;
+    const startingConcept = this.graph.get(startingConceptId);
+
+    const draft: AssessmentSession = {
       id: createId(),
-      subject: concept.subject,
+      mode: options.mode,
+      subject: startingConcept.subject,
+      scope,
       startingConceptId,
-      currentConceptId: pendingRecommendation.targetConcept,
-      currentDifficulty: pendingRecommendation.targetDifficulty,
-      maxQuestions,
+      currentConceptId: startingConceptId,
+      currentDifficulty: options.startDifficulty ?? startingConcept.difficulty,
+      // Never ask more questions than exist, so a session does not have to repeat itself.
+      maxQuestions: Math.min(options.maxQuestions, available),
       responses: [],
       askedQuestionIds: [],
-      pendingRecommendation,
+      pendingRecommendation: null,
       status: 'active',
       startedAt: new Date().toISOString(),
+    };
+
+    const pendingRecommendation = this.recommendationEngine.recommendInitial(draft);
+    if (!pendingRecommendation) throw new Error('There are no questions for this selection yet.');
+    return {
+      ...draft,
+      currentConceptId: pendingRecommendation.targetConcept,
+      currentDifficulty: pendingRecommendation.targetDifficulty,
+      pendingRecommendation,
     };
   }
 
   getCurrentQuestion(session: AssessmentSession): Question {
     if (session.status !== 'active' || !session.pendingRecommendation) {
-      throw new Error('This assessment has no active question');
+      throw new Error('This session has no active question');
     }
     return session.pendingRecommendation.question;
   }
 
-  submitAnswer(session: AssessmentSession, selectedAnswer: string, studentWorking = ''): SubmissionResult {
-    if (session.status !== 'active' || !session.pendingRecommendation) {
-      throw new Error('Cannot submit an answer to a completed assessment');
-    }
-
-    const question = session.pendingRecommendation.question;
+  submitAnswer(session: AssessmentSession, selectedAnswer: string, studentWorking = ''): SessionSubmission {
+    const question = this.getCurrentQuestion(session);
     const diagnostic = this.feedbackEngine.diagnose(question, selectedAnswer);
-    const response = {
+    const response: StudentResponse = {
       questionId: question.id,
       conceptId: question.concept,
       difficulty: question.difficulty,
@@ -69,34 +111,58 @@ export class AdaptiveAssessmentEngine {
       answeredAt: new Date().toISOString(),
     };
 
-    session.responses.push(response);
-    session.askedQuestionIds.push(question.id);
-    const analysis = this.gapAnalysisEngine.analyze(session.responses);
+    const answered: AssessmentSession = {
+      ...session,
+      responses: [...session.responses, response],
+      askedQuestionIds: [...session.askedQuestionIds, question.id],
+    };
+    const analysis = this.gapAnalysisEngine.analyze(answered.responses);
 
-    if (session.responses.length >= session.maxQuestions) {
-      session.status = 'completed';
-      session.pendingRecommendation = null;
+    const nextRecommendation = answered.responses.length >= answered.maxQuestions
+      ? null
+      : this.recommendationEngine.recommendNext(answered, response, analysis);
+
+    if (!nextRecommendation) {
+      const completed: AssessmentSession = { ...answered, status: 'completed', pendingRecommendation: null };
       return {
+        session: completed,
         diagnostic,
         response,
         nextRecommendation: null,
-        report: this.reportGenerator.generate(session, analysis),
+        report: this.reportGenerator.generate(completed, analysis),
       };
     }
 
-    const nextRecommendation = this.recommendationEngine.recommendNext(response, analysis, session.askedQuestionIds);
-    diagnostic.suggestedNextConcept = nextRecommendation.targetConcept;
-    diagnostic.reasoning += ` Next-question decision: ${nextRecommendation.reason}`;
-    session.currentConceptId = nextRecommendation.targetConcept;
-    session.currentDifficulty = nextRecommendation.targetDifficulty;
-    session.pendingRecommendation = nextRecommendation;
-
-    return { diagnostic, response, nextRecommendation, report: null };
+    if (answered.mode === 'diagnostic') {
+      diagnostic.suggestedNextConcept = nextRecommendation.targetConcept;
+      diagnostic.reasoning += ` ${nextRecommendation.reason}`;
+    }
+    return {
+      session: {
+        ...answered,
+        currentConceptId: nextRecommendation.targetConcept,
+        currentDifficulty: nextRecommendation.targetDifficulty,
+        pendingRecommendation: nextRecommendation,
+      },
+      diagnostic,
+      response,
+      nextRecommendation,
+      report: null,
+    };
   }
 
-  getLiveAnalysis(session: AssessmentSession) {
+  /** Ends a session early. Returns null when nothing was answered, since there is nothing to report. */
+  finish(session: AssessmentSession): { session: AssessmentSession; report: AssessmentReport | null } {
+    const completed: AssessmentSession = { ...session, status: 'completed', pendingRecommendation: null };
+    if (session.responses.length === 0) return { session: completed, report: null };
+    return { session: completed, report: this.reportGenerator.generate(completed, this.getLiveAnalysis(session)) };
+  }
+
+  getLiveAnalysis(session: AssessmentSession): GapAnalysis {
     return this.gapAnalysisEngine.analyze(session.responses);
   }
-}
 
-export const adaptiveAssessmentEngine = new AdaptiveAssessmentEngine();
+  describeMisconception(id: string) {
+    return this.feedbackEngine.misconception(id);
+  }
+}
